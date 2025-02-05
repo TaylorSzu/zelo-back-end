@@ -2,29 +2,51 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = 9050;
-const ejs = require('ejs');
 const session = require('express-session');
 const body_parser = require('body-parser');
 const database = require('./DB/DB');
 const path = require('path');
+const fileupload = require('express-fileupload');
 
+
+
+
+
+//Configurações
+app.use(session({secret: 'zelo',}))
+app.use(fileupload(
+    {
+        useTempFiles: true,
+        tempFileDir: '/tmp/'
+    }
+));
+app.use(express.static('public'));
+app.use(body_parser.json());
+app.use(body_parser.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'FrontEnd/layout/HTML'));
 app.use(cors());
+
+
+
+
+//Rotas
+ app.get('/teste', (req, res) => {
+    res.json({'msg': 'Funcionando'});
+})
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
-//Conexão ao FrontEnd
-app.engine('html', ejs.renderFile);
-app.set('view engine', 'html');
-app.use(express.static(path.join(__dirname, 'FrontEnd')));
-app.use(body_parser.json());
-app.use(body_parser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'FrontEnd/layout')));
-app.use('/img', express.static(path.join(__dirname, 'FrontEnd/layout/IMG')));
-app.use('/css', express.static(path.join(__dirname, 'FrontEnd/layout/CSS')));
-app.use('/html', express.static(path.join(__dirname, 'FrontEnd/layout/HTML')));
+app.all('*', (req, res) => {
+    res.status(404).send('Página não encontrada');
+});
 
 
+app.listen(port, () => {
+    console.log(`Servidor rodando na porta ${port}`);
+});
  //----Exportações-----
  module.exports = {
     app : app,
