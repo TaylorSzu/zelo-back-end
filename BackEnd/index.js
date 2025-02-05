@@ -31,7 +31,9 @@ app.use(cors());
 
 
 //Rotas
- app.get('/teste', (req, res) => {
+
+    //GET
+app.get('/teste', (req, res) => {
     res.json({'msg': 'Funcionando'});
 })
 
@@ -39,9 +41,17 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 
+    //POST
+
+// app.post('/loginTeste', (req, res) => {
+//     res.json({'msg': 'Funcionando'});
+// })
+
+    //ALL
 app.all('*', (req, res) => {
     res.status(404).send('Página não encontrada');
 });
+
 
 
 app.listen(port, () => {
