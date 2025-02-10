@@ -1,5 +1,3 @@
-# zElo-2.0
-=======
 # zElo Git
 
 > Intermediador entre o cuidador e o idoso, onde tem como objetivo facilitar o acesso e o cuidado para aqueles que mais necessitam.
@@ -42,6 +40,9 @@ npm install cors
 npm install body-parser
 npm install express
 npm install express-fileupload
+npm install jwtwebtoken
+npm install ejs
+npm install express-session
 ```
 
 ## Como Usar
