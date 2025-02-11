@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js"
-import { errors } from "jose";
+import sequelize from '../Database/Database.js';
+
+
 
 const Usuario = sequelize.define("User",
     {
@@ -14,7 +15,7 @@ const Usuario = sequelize.define("User",
             allowNull: false,
         },
         cpf: {
-            type: DataTypes.STRING.length(11),
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
@@ -43,22 +44,17 @@ const Usuario = sequelize.define("User",
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: "ativo",
-        },
-        created_at: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
         }
     },
     {
         tableName: "usuarios",
-        timestamps: false,
+        timestamps: true,
     }
 );
 
 sequelize.sync({alter: true})
     .then(() =>{
-        console.log("Tabela sincronizada")
+        console.log("TabelaModel sincronizada")
     })
     .catch((error) => {
         console.error("Error ao sincronizar a tabela", error)
