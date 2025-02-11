@@ -1,1 +1,67 @@
-// so pra aparecer no repositorio
+import { DataTypes } from "sequelize";
+import sequelize from "../Database/Database.js"
+import { errors } from "jose";
+
+const Usuario = sequelize.define("User",
+    {
+        id: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        nome: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        cpf: {
+            type: DataTypes.STRING.length(11),
+            allowNull: false,
+            unique: true
+        },
+        endereco: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        telefone: {
+            type : DataTypes.STRING,
+            allowNull: false,
+        }, 
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+        },
+        senha: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        tipoUsuario: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        status: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: "ativo",
+        },
+        created_at: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        }
+    },
+    {
+        tableName: "usuarios",
+        timestamps: false,
+    }
+);
+
+sequelize.sync({alter: true})
+    .then(() =>{
+        console.log("Tabela sincronizada")
+    })
+    .catch((error) => {
+        console.error("Error ao sincronizar a tabela", error)
+    });
+
+export default Usuario;
