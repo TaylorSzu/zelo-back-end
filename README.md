@@ -30,19 +30,19 @@ O projeto ainda está em desenvolvimento e constantemente teremos atualizações
 ### Linguagem e Libraries
 
 > Neste projeto é necessário usar a versão recente do Node.Js e a do React.
-> Libs necessárias do projeto:
+> Libs usadas no projeto:
 
 ```
-npm install Sequelize
-npm install mysql2
-npm install path
-npm install cors
-npm install body-parser
-npm install express
-npm install express-fileupload
-npm install jwtwebtoken
-npm install ejs
-npm install express-session
+Sequelize
+mysql2
+path
+cors
+body-parser
+express
+express-fileupload
+jwtwebtoken
+ejs
+express-session
 ```
 
 ## Como Usar
