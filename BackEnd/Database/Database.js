@@ -11,7 +11,7 @@ const sequelize = new Sequelize('zelo_db', 'zelo_admin', 'fas7HFiue3fa', {
 
 sequelize.authenticate()
     .then(() => {
-        console.log('Conectado ao banco de dados/Database connected');
+        console.log('Conectado ao banco de dados/Database connected \n');
     })
     .catch((erro) => {
         console.error('Erro de conexão com o banco de dados', erro);

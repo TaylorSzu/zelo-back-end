@@ -54,7 +54,8 @@ const Usuario = sequelize.define("User",
 
 sequelize.sync({alter: true})
     .then(() =>{
-        console.log("TabelaModel sincronizada")
+        console.log("--------------------------------STATUS DAS TABELAS--------------------------------");
+        console.log("TabelaUser sincronizada \n")
     })
     .catch((error) => {
         console.error("Error ao sincronizar a tabela", error)

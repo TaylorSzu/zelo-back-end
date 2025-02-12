@@ -3,10 +3,9 @@ import User from "../Models/userModel.js";
 import connected from "../Database/Database.js";
 
 
-connected.sync()
+connected.sync({})
     .then(() => {
-        console.log("Tabela sincronizada");
-
+        console.log("--------------------------------TABELA DE USUÁRIOS--------------------------------");
     })
     .then(() => {
        
@@ -14,6 +13,8 @@ connected.sync()
     })
     .then(users => {
         console.log("Todos os dados:", users.map(user => user.toJSON()));
+        console.log("Tabela Referente:", User.getTableName());
+        console.log("Quantidade de dados:", User.count());
     })
     .catch(error => {
         console.error("Erro ao sincronizar a tabela", error);
