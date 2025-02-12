@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../Database/Database.js"
+import { errors } from "jose";
 
 const Usuario = sequelize.define("User",
     {
@@ -13,7 +14,7 @@ const Usuario = sequelize.define("User",
             allowNull: false,
         },
         cpf: {
-            type: DataTypes.STRING(11),
+            type: DataTypes.STRING.length(11),
             allowNull: false,
             unique: true
         },
@@ -52,7 +53,7 @@ const Usuario = sequelize.define("User",
 
 sequelize.sync({alter: true})
     .then(() =>{
-        console.log("Tabela sincronizada")
+        console.log("TabelaModel sincronizada")
     })
     .catch((error) => {
         console.error("Error ao sincronizar a tabela", error)

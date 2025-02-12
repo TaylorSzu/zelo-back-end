@@ -30,6 +30,14 @@ O projeto ainda está em desenvolvimento e constantemente teremos atualizações
 ### Linguagem e Libraries
 
 > Neste projeto é necessário usar a versão recente do Node.Js e a do React.
+
+```
+https://react.dev/learn/start-a-new-react-project
+```
+```
+https://nodejs.org/pt
+```
+
 > Libs usadas no projeto:
 
 ```
