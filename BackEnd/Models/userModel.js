@@ -13,7 +13,7 @@ const Usuario = sequelize.define("User",
             allowNull: false,
         },
         cpf: {
-            type: DataTypes.STRING.length(11),
+            type: DataTypes.STRING(11),
             allowNull: false,
             unique: true
         },
@@ -50,11 +50,7 @@ const Usuario = sequelize.define("User",
     }
 );
 
-sequelize.sync({alter: true})
-    .then(() =>{
-        console.log("--------------------------------STATUS DAS TABELAS--------------------------------");
-        console.log("TabelaUser sincronizada \n")
-    })
+sequelize.sync()
     .catch((error) => {
         console.error("Error ao sincronizar a tabela", error)
     });

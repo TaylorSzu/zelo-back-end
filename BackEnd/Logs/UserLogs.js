@@ -1,22 +1,22 @@
 //LOGS DE SERVIÇOS
 import User from "../Models/userModel.js";
 import connected from "../Database/Database.js";
+import chalk from "chalk";
 
 
 connected.sync({})
-    .then(() => {
-        console.log("--------------------------------TABELA DE USUÁRIOS--------------------------------");
-    })
     .then(() => {
        
         return User.findAll(); 
     })
     .then(users => {
-        console.log("Todos os dados:", users.map(user => user.toJSON()));
-        console.log("Tabela Referente:", User.getTableName());
-        console.log("Quantidade de dados:", User.count());
+        console.log(chalk.blue("TODOS OS DADOS:", users.map(user => user.toJSON())));
+        console.log(chalk.yellow("TABELA REFERENTE:", User.getTableName()));
+        console.log("QUANTIDADE DE DADOS:", User.count(), '\n');
+        console.log(chalk.white.bgWhite("------------------------------------------\n"));
     })
     .catch(error => {
         console.error("Erro ao sincronizar a tabela", error);
     });
 
+    export default User;

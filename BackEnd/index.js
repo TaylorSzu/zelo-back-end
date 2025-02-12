@@ -7,8 +7,7 @@ const body_parser = require('body-parser');
 const database = require('./Database/Database');
 const path = require('path');
 const fileupload = require('express-fileupload');
-const userLogs = require('./Logs/UserLogs');
-
+const indexLogs = require('./Logs/indexLogs.js');
 
 app.use(session({secret: 'zelo',}))
 app.use(fileupload(
