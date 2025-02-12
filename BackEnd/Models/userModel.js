@@ -1,7 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from '../Database/Database.js';
-
-
+import sequelize from "../Database/Database.js"
 
 const Usuario = sequelize.define("User",
     {
@@ -15,7 +13,7 @@ const Usuario = sequelize.define("User",
             allowNull: false,
         },
         cpf: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING.length(11),
             allowNull: false,
             unique: true
         },
