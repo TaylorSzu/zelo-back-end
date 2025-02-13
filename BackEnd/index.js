@@ -1,24 +1,25 @@
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+import fileUpload from 'express-fileupload';
+import path from 'path';
+import database from './Database/Database.js';
+import userLogs from './Logs/UserLogs.js';
+
 const app = express();
-const cors = require('cors');
 const port = 9050;
-const session = require('express-session');
-const body_parser = require('body-parser');
-const database = require('./Database/Database');
-const path = require('path');
-const fileupload = require('express-fileupload');
-const indexLogs = require('./Logs/indexLogs.js');
 
 app.use(session({secret: 'zelo',}))
-app.use(fileupload(
+app.use(fileUpload(
     {
         useTempFiles: true,
         tempFileDir: '/tmp/'
     }
 ));
 app.use(express.static('public'));
-app.use(body_parser.json());
-app.use(body_parser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 app.use(cors());
@@ -48,10 +49,4 @@ app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
  //----Exportações-----
- module.exports = {
-    app : app,
-    path: path,
-    express: express,
-    session: session,
-    body_parser: body_parser
-}
+export default { app, path, express, session, bodyParser };

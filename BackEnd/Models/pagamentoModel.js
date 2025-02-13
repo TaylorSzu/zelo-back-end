@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database";
+import sequelize from "../Database/Database.js";
+import user from "../Models/userModel.js";
 
 const Pagamento = sequelize.define("Pagamento", {
         id: {
@@ -54,7 +55,14 @@ const Pagamento = sequelize.define("Pagamento", {
     }
 );
 
-sequelize.sync({ alter: true })
+user.hasMany(Pagamento, { foreignKey: "contratanteId", onDelete: "CASCADE" });
+user.hasMany(Pagamento, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
+user.hasMany(Pagamento, { foreignKey: "agendamentoId", onDelete: "CASCADE" });
+Pagamento.belongsTo(user, { foreignKey: "contratanteId" });
+Pagamento.belongsTo(user, { foreignKey: "cuidadorId" });
+Pagamento.belongsTo(user, { foreignKey: "agendamentoId" });
+
+sequelize.sync()
     .then(() => {
         console.log("Tabela Contratantes sincronizada");
     })

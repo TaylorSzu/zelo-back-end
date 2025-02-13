@@ -38,7 +38,7 @@ const Agendamento = sequelize.define("Agendamento",
     }
 );
 
-sequelize.sync({alter: true})
+sequelize.sync()
 .then(() => {
     console.log("Tabela sincronizada");
 })

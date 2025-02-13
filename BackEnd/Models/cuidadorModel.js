@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize  from "../Database/Database";
+import sequelize  from "../Database/Database.js";
+import user from "../Models/userModel.js";
 
 const Cuidadores = sequelize.define("Cuidadores", {
     id: {
@@ -37,7 +38,10 @@ const Cuidadores = sequelize.define("Cuidadores", {
     timestamps: true,
 });
 
-sequelize.sync({alter: true})
+user.hasMany(Cuidadores, {foreignKey: "usuarioId", onDelete: "CASCADE"});
+Cuidadores.belongsTo(user, {foreignKey: "usuarioId"});
+
+sequelize.sync()
     .then(() =>{
         console.log("Tabela sincronizada")
     })

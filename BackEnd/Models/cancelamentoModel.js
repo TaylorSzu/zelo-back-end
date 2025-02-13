@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
+import sequelize from "../Database/Database";
 
 const Cancelamentos = sequelize.define("Cancelamentos", {
     id: {
@@ -37,7 +37,10 @@ const Cancelamentos = sequelize.define("Cancelamentos", {
     timestamps: true,
 });
 
-sequelize.sync({ })
+sequelize.sync()
+    .then(() => {
+        console.log("Tabela Contratantes sincronizada");
+    })
     .catch((error) => {
         console.error("Erro ao sincronizar a tabela Contratantes", error);
     });

@@ -31,7 +31,7 @@ const Avaliacao = sequelize.define("avaliações",
     }
 );
 
-sequelize.sync({})
+sequelize.sync()
 .then(() => {
     console.log("Tabela sincronizada");
 })
