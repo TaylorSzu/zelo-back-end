@@ -6,7 +6,6 @@ import chalk from "chalk";
 
 connected.sync({})
     .then(() => {
-       
         return User.findAll(); 
     })
     .then(users => {
