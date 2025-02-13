@@ -14,10 +14,10 @@ function encontrarCancelamento(id){
 }
 
 
-function editarCancelamento(id, user){
+function editarCancelamento(id, cancel){
     const CancelamentoEncontrado = encontrarCancelamento(id);
     if (CancelamentoEncontrado) {
-        return CancelamentoEncontrado.update(user);
+        return CancelamentoEncontrado.update(cancel);
     } else {
         return null;
     }

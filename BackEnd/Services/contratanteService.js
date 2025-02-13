@@ -1,8 +1,8 @@
 
 import contrantante from "../Models/contratanteModel.js";
 
-function registrarContratante(privaci){
-    return contrantante.create(privaci);
+function registrarContratante(contratar){
+    return contrantante.create(contratar);
 }
 
 function listarContratante(){
@@ -14,10 +14,10 @@ function encontrarContratante(id){
 }
 
 
-function editarContratante(id, privaci){
+function editarContratante(id, contratar){
     const ContratanteEncontrado = encontrarContratante(id);
     if (ContratanteEncontrado) {
-        return ContratanteEncontrado.update(privaci);
+        return ContratanteEncontrado.update(contratar);
     } else {
         return null;
     }
