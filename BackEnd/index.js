@@ -5,7 +5,8 @@ import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import path from 'path';
 import database from './Database/Database.js';
-import userLogs from './Logs/UserLogs.js';
+import indexLogs from './Logs/indexLogs.js';
+import ansi_styles from 'ansi-styles';
 
 const app = express();
 const port = 9050;
