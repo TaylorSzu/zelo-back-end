@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../Database/Database.js"
 
+
 const Usuario = sequelize.define("User",
     {
         id: {

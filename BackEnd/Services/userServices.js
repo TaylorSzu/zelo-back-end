@@ -1,3 +1,4 @@
+
 import usuario from "../Models/userModel.js";
 
 function registrarUsuario(user){
@@ -32,3 +33,4 @@ function excluirUsuario(id){
 }
 
 export default {registrarUsuario, listarUsuarios, encontrarUsuario, editarUsuario, excluirUsuario};
+

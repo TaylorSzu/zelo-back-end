@@ -4,9 +4,9 @@ import session from 'express-session';
 import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import path from 'path';
-
 // Rotas
 import userRoutes from '../BackEnd/Routes/userRouter.js';
+
 
 const app = express();
 const port = 9050;
