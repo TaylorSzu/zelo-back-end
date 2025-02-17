@@ -1,15 +1,15 @@
+// Importações
 import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import path from 'path';
-// Rotas
 import userRoutes from '../BackEnd/Routes/userRouter.js';
 
-
+//Porta do servidor
 const app = express();
-const port = 9050;
+const port = 5173;
 
 // Configuração de middlewares (ordem correta)
 app.use(express.json()); // Processa JSON corretamente
@@ -39,8 +39,8 @@ app.set('view engine', 'ejs');
 app.use(userRoutes);
 
 // Teste de funcionamento
-app.get('/teste', (req, res) => {
-    res.json({ 'msg': 'Funcionando' });
+app.get('/data', (req, res) => {
+    res.json({ msg: 'Funcionando' });
 });
 
 app.get('/', (req, res) => {
