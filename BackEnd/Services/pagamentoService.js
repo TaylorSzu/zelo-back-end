@@ -9,13 +9,13 @@ function listarPagamento(){
     return pagamento.findAll();
 }
 
-function encontrarPagamento(id){
+async function encontrarPagamento(id){
     return pagamento.findByPk(id);
 }
 
 
-function editarPagamento(id, pagar){
-    const PagamentoEncontrado = encontrarPagamento(id);
+async function editarPagamento(id, pagar){
+    const PagamentoEncontrado = await encontrarPagamento(id);
     if (PagamentoEncontrado) {
         return PagamentoEncontrado.update(pagar);
     } else {
@@ -23,8 +23,8 @@ function editarPagamento(id, pagar){
     }
 }
 
-function excluirPagamento(id){
-    const PagamentoEncontrado = encontrarPagamento(id);
+async function excluirPagamento(id){
+    const PagamentoEncontrado = await encontrarPagamento(id);
     if (PagamentoEncontrado) {
         return PagamentoEncontrado.destroy();
     } else {

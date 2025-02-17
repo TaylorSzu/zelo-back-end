@@ -6,6 +6,9 @@ import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import path from 'path';
 import userRoutes from '../BackEnd/Routes/userRouter.js';
+import axios from 'axios';
+
+
 
 //Porta do servidor
 const app = express();
@@ -39,6 +42,8 @@ app.set('view engine', 'ejs');
 app.use(userRoutes);
 
 // Teste de funcionamento
+
+
 app.get('/data', (req, res) => {
     res.json({ msg: 'Funcionando' });
 });

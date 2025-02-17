@@ -9,13 +9,13 @@ function listarPrivacidade(){
     return privacidade.findAll();
 }
 
-function encontrarPrivacidade(id){
+async function encontrarPrivacidade(id){
     return privacidade.findByPk(id);
 }
 
 
-function editarPrivacidade(id, privaci){
-    const PrivacidadeEncontrado = encontrarPrivacidade(id);
+async function editarPrivacidade(id, privaci){
+    const PrivacidadeEncontrado = await encontrarPrivacidade(id);
     if (PrivacidadeEncontrado) {
         return PrivacidadeEncontrado.update(privaci);
     } else {
@@ -23,8 +23,8 @@ function editarPrivacidade(id, privaci){
     }
 }
 
-function excluirPrivacidade(id){
-    const PrivacidadeEncontrado = encontrarPrivacidade(id);
+async function excluirPrivacidade(id){
+    const PrivacidadeEncontrado = await encontrarPrivacidade(id);
     if (PrivacidadeEncontrado) {
         return PrivacidadeEncontrado.destroy();
     } else {
