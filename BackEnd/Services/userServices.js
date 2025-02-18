@@ -9,28 +9,44 @@ function listarUsuarios(){
     return usuario.findAll();
 }
 
-function encontrarUsuario(id){
-    return usuario.findByPk(id);
+async function encontrarUsuario(id){
+    return await usuario.findByPk(id);
 }
 
-
-function editarUsuario(id, user){
-    const usuarioEncontrado = encontrarUsuario(id);
+async function editarUsuario(id, user){
+    const usuarioEncontrado = await encontrarUsuario(id);
     if (usuarioEncontrado) {
-        return usuarioEncontrado.update(user);
+        return await usuarioEncontrado.update(user);
     } else {
         return null;
     }
 }
 
-function excluirUsuario(id){
-    const usuarioEncontrado = encontrarUsuario(id);
+async function excluirUsuario(id){
+    const usuarioEncontrado = await usuario.findByPk(id);
     if (usuarioEncontrado) {
-        return usuarioEncontrado.destroy();
+        return await usuarioEncontrado.destroy();
     } else {
         return null;
     }
 }
 
-export default {registrarUsuario, listarUsuarios, encontrarUsuario, editarUsuario, excluirUsuario};
+async function login(email, senha) {
+    const user = await usuario.findOne({ where: { email: email, senha: senha } });
+    if (user) {
+        return user;
+    } else {
+        return null;
+    }
+}
+
+
+export default {
+    registrarUsuario,
+    listarUsuarios, 
+    encontrarUsuario,
+    editarUsuario,
+    excluirUsuario,
+    login
+};
 
