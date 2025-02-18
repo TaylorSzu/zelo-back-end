@@ -9,24 +9,24 @@ function listarCancelamentos(){
     return cancelamento.findAll();
 }
 
-function encontrarCancelamento(id){
-    return cancelamento.findByPk(id);
+async function encontrarCancelamento(id){
+    return await cancelamento.findByPk(id);
 }
 
 
-function editarCancelamento(id, cancel){
-    const CancelamentoEncontrado = encontrarCancelamento(id);
+async function editarCancelamento(id, cancel){
+    const CancelamentoEncontrado = await encontrarCancelamento(id);
     if (CancelamentoEncontrado) {
-        return CancelamentoEncontrado.update(cancel);
+        return await CancelamentoEncontrado.update(cancel);
     } else {
         return null;
     }
 }
 
-function excluirCancelamento(id){
-    const CancelamentoEncontrado = encontrarCancelamento(id);
+async function excluirCancelamento(id){
+    const CancelamentoEncontrado = await encontrarCancelamento(id);
     if (CancelamentoEncontrado) {
-        return CancelamentoEncontrado.destroy();
+        return await CancelamentoEncontrado.destroy();
     } else {
         return null;
     }

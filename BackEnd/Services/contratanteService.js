@@ -9,13 +9,13 @@ function listarContratante(){
     return contrantante.findAll();
 }
 
-function encontrarContratante(id){
+async function encontrarContratante(id){
     return contrantante.findByPk(id);
 }
 
 
-function editarContratante(id, contratar){
-    const ContratanteEncontrado = encontrarContratante(id);
+async function editarContratante(id, contratar){
+    const ContratanteEncontrado = await encontrarContratante(id);
     if (ContratanteEncontrado) {
         return ContratanteEncontrado.update(contratar);
     } else {
@@ -23,8 +23,8 @@ function editarContratante(id, contratar){
     }
 }
 
-function excluirContratante(id){
-    const ContratanteEncontrado = encontrarContratante(id);
+async function excluirContratante(id){
+    const ContratanteEncontrado = await encontrarContratante(id);
     if (ContratanteEncontrado) {
         return ContratanteEncontrado.destroy();
     } else {

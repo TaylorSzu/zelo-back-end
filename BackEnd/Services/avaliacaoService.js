@@ -9,24 +9,24 @@ function listarAvaliacao(){
     return avaliacao.findAll();
 }
 
-function encontrarAvaliacao(id){
-    return avaliacao.findByPk(id);
+async function encontrarAvaliacao(id){
+    return await avaliacao.findByPk(id);
 }
 
 
-function editarAvaliacao(id, avaliar){
+async function editarAvaliacao(id, avaliar){
     const AvaliacaoEncontrado = encontrarAvaliacao(id);
     if (AvaliacaoEncontrado) {
-        return AvaliacaoEncontrado.update(avaliar);
+        return await AvaliacaoEncontrado.update(avaliar);
     } else {
         return null;
     }
 }
 
-function excluirAvaliacao(id){
+async function excluirAvaliacao(id){
     const AvaliacaoEncontrado = encontrarAvaliacao(id);
     if (AvaliacaoEncontrado) {
-        return AvaliacaoEncontrado.destroy();
+        return await AvaliacaoEncontrado.destroy();
     } else {
         return null;
     }

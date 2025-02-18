@@ -9,24 +9,24 @@ function listarAgendamento(){
     return agendamento.findAll();
 }
 
-function encontrarAgendamento(id){
-    return agendamento.findByPk(id);
+async function encontrarAgendamento(id){
+    return await agendamento.findByPk(id);
 }
 
 
-function editarAgendamento(id, agendar){
-    const AgendamentoEncontrado = encontrarAgendamento(id);
+async function editarAgendamento(id, agendar){
+    const AgendamentoEncontrado = await encontrarAgendamento(id);
     if (AgendamentoEncontrado) {
-        return AgendamentoEncontrado.update(agendar);
+        return await AgendamentoEncontrado.update(agendar);
     } else {
         return null;
     }
 }
 
-function excluirAgendamento(id){
-    const AgendamentoEncontrado = encontrarAgendamento(id);
+async function excluirAgendamento(id){
+    const AgendamentoEncontrado = await encontrarAgendamento(id);
     if (AgendamentoEncontrado) {
-        return AgendamentoEncontrado.destroy();
+        return await AgendamentoEncontrado.destroy();
     } else {
         return null;
     }

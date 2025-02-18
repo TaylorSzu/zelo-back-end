@@ -8,12 +8,12 @@ function listarCuidador(){
     return cuidador.findAll();
 }
 
-function encontrarCuidador(id){
+async function encontrarCuidador(id){
     return cuidador.findByPk(id);
 }
 
-function editarCuidador(id, cuidar){
-    const cuidadorEncontrado = encontrarCuidador(id);
+async function editarCuidador(id, cuidar){
+    const cuidadorEncontrado = await encontrarCuidador(id);
     if (cuidadorEncontrado) {
         return cuidadorEncontrado.update(cuidar);
     } else {
@@ -21,8 +21,8 @@ function editarCuidador(id, cuidar){
     }
 }
 
-function excluirCuidador(id){
-    const cuidadorEncontrado = encontrarCuidador(id);
+async function excluirCuidador(id){
+    const cuidadorEncontrado = await encontrarCuidador(id);
     
     if(cuidadorEncontrado) {
         return cuidadorEncontrado.destroy();

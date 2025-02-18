@@ -9,13 +9,13 @@ function listarSuporte(){
     return suporte.findAll();
 }
 
-function encontrarSuporte(id){
+async function encontrarSuporte(id){
     return suporte.findByPk(id);
 }
 
 
-function editarSuporte(id, suport){
-    const SuporteEncontrado = encontrarSuporte(id);
+async function editarSuporte(id, suport){
+    const SuporteEncontrado = await encontrarSuporte(id);
     if (SuporteEncontrado) {
         return SuporteEncontrado.update(suport);
     } else {
@@ -23,8 +23,8 @@ function editarSuporte(id, suport){
     }
 }
 
-function excluirSuporte(id){
-    const SuporteEncontrado = encontrarSuporte(id);
+async function excluirSuporte(id){
+    const SuporteEncontrado = await encontrarSuporte(id);
     if (SuporteEncontrado) {
         return SuporteEncontrado.destroy();
     } else {
