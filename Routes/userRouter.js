@@ -2,6 +2,7 @@ import usuario from "../Services/userServices.js";
 import express from "express";
 import authMiddleware from "../Jwt/middleware.js";
 import {gerarToken} from "../Jwt/jwt.js";
+import database from "../Database/Database.js";
 
 const router = express.Router();
 
@@ -14,6 +15,9 @@ router.post("/usuario/registrar", async (req, res) => {
         console.log("Recebendo dados para registrar:", user);
         const novoUsuario = await usuario.registrarUsuario(user);
         const token = gerarToken(novoUsuario.id);
+        database.sync({}).then(() => {
+            return usuario.registrarUsuario(user);
+        })
         
         res.status(201).json({"msg": "Usuario registrado com sucesso", "token": token}); 
     } catch (error) {
