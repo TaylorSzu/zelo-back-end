@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../Database/Database.js";
-import user from "../Models/userModel.js";
 
 const Avaliacao = sequelize.define("avaliações",
     {
@@ -31,11 +30,6 @@ const Avaliacao = sequelize.define("avaliações",
         timestamps: true,
     }
 );
-
-user.hasMany(Avaliacao, { foreignKey: "contratanteId", onDelete: "CASCADE" });
-user.hasMany(Avaliacao, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
-Avaliacao.belongsTo(user, { foreignKey: "contratanteId" });
-Avaliacao.belongsTo(user, { foreignKey: "cuidadorId" });
 
 sequelize.sync()
 .then(() => {

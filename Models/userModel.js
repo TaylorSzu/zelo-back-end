@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
+import sequelize from "../Database/Database.js"
+
 
 const Usuario = sequelize.define("User",
     {
@@ -35,7 +36,7 @@ const Usuario = sequelize.define("User",
             allowNull: false,
         },
         tipoUsuario: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: false,
         },
         status: {
@@ -51,9 +52,6 @@ const Usuario = sequelize.define("User",
 );
 
 sequelize.sync()
-    .then(() =>{
-        console.log("TabelaModel sincronizada")
-    })
     .catch((error) => {
         console.error("Error ao sincronizar a tabela", error)
     });

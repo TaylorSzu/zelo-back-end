@@ -1,52 +1,66 @@
+// Importações
 import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import path from 'path';
-import database from './Database/Database.js';
-import userLogs from './Logs/UserLogs.js';
+import userRoutes from '../BackEnd/Routes/userRouter.js';
+import cuidadorRoutes from '../BackEnd/Routes/cuidadorRoutes.js';
 
+const urlPost = 'http://localhost:5173/data';
+
+//Porta do servidor
 const app = express();
-const port = 9050;
+const port = 5171;
 
-app.use(session({secret: 'zelo',}))
-app.use(fileUpload(
-    {
-        useTempFiles: true,
-        tempFileDir: '/tmp/'
-    }
-));
-app.use(express.static('public'));
+// Configuração de middlewares (ordem correta)
+app.use(express.json()); // Processa JSON corretamente
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
-
 app.use(cors());
 
-app.get('/teste', (req, res) => {
-    res.json({'msg': 'Funcionando'});
-})
+// Configuração de sessão (corrigido)
+app.use(session({
+    secret: 'zelo',
+    resave: false,
+    saveUninitialized: true, // Agora configurado corretamente
+    cookie: { secure: false } // Se usar HTTPS, mude para `true`
+}));
+
+// Configuração de upload de arquivos
+app.use(fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/'
+}));
+
+// Configuração de arquivos estáticos e template engine
+app.use(express.static('public'));
+app.set('view engine', 'ejs');
+
+// Rotas
+app.use(userRoutes);
+app.use(cuidadorRoutes);
+
+// Teste de funcionamento
+
+app.get('/data', (req, res) => {
+    res.json({ msg: 'Funcionando' });
+});
 
 app.get('/', (req, res) => {
-    res.json({'Status': 'Funcionando'});
+    res.json({ 'Status': 'Funcionando' });
 });
 
-    //POST
-
-// app.post('/loginTeste', (req, res) => {
-//     res.json({'msg': 'Funcionando'});
-// })
-
-    //ALL
+// Rota 404
 app.all('*', (req, res) => {
-    res.status(404).send('Página não encontrada');
+    res.status(404).send('Página não encontrada');
 });
 
-
-
+// Inicialização do servidor
 app.listen(port, () => {
     console.log(`Servidor rodando na porta ${port}`);
 });
- //----Exportações-----
+
+// Exportações
 export default { app, path, express, session, bodyParser };

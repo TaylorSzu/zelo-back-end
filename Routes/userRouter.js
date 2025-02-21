@@ -1,1 +1,102 @@
-// so pra aparecer no repositorio
+import usuario from "../Services/userServices.js";
+import express from "express";
+import authMiddleware from "../Jwt/middleware.js";
+import {gerarToken} from "../Jwt/jwt.js";
+
+const router = express.Router();
+
+router.post("/usuario/registrar", async (req, res) => {
+    try {
+        const user = req.body;
+        if(Object.keys(user).length == 0){
+            return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
+        }
+        console.log("Recebendo dados para registrar:", user);
+        const novoUsuario = await usuario.registrarUsuario(user);
+        const token = gerarToken(novoUsuario.id);
+        
+        res.status(201).json({"msg": "Usuario registrado com sucesso", "token": token}); 
+    } catch (error) {
+        console.error("Error: erro ao cadastrar o usuario",error);
+        res.status(500).json({"msg": "Erro ao cadastrar o usuario"});
+    }
+});
+
+router.post("/usuario/login", async (req, res) => {
+    try {
+        const {email, senha} = req.body;
+        if(email == null || senha == null){
+            return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
+        }
+        const user = await usuario.login(email, senha);
+        if(user == null){
+            return res.status(404).json({"msg": "Usuario nao encontrado"});
+        }
+        const token = gerarToken(user.id);
+        res.status(200).json({"token": token});
+    } catch (error) {
+        console.error("Erro ao fazer login:", error);
+        res.status(500).json({ "msg": "Erro ao realizar login" });
+    }
+});
+
+router.get("/usuario/listar", async (req, res) => {
+    try {
+        const users = await usuario.listarUsuarios();
+        if(users == null){
+            res.status(404).json({"msg": "Usuarios nao encontrados"});
+        }
+        res.status(200).json(users);
+    } catch (error) {
+        console.error("Error: erro ao listar os usuarios",error);
+        res.status(500).json({"msg": "Erro ao listar os usuarios"});
+    }
+});
+
+router.get("/usuario/encontrar/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = await usuario.encontrarUsuario(id);
+        if(user == null){
+            return res.status(404).json({"msg": "Usuario nao encontrado"});
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        console.error("Error: erro ao encontrar o usuario",error);
+        res.status(500).json({"msg": "Erro ao encontrar o usuario"});
+    }
+});
+
+router.put("/usuario/alterar/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const user = req.body;
+        if(Object.keys(user).length == 0){
+            return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
+        }else if(user.id == null){
+            return res.status(400).json({"msg": "Nenhum id foi fornecido"});
+        }
+        console.log("Recebendo dados para alterar:", user);
+        await usuario.editarUsuario(id, user);
+        res.status(200).json({"msg": "Usuario alterado com sucesso"});
+    } catch (error) {
+        console.error("Error: erro ao alterar o usuario",error);
+        res.status(500).json({"msg": "Erro ao alterar o usuario"});
+    }
+});
+
+router.delete("/usuario/excluir/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+       const user = await usuario.excluirUsuario(id);
+        if (!user) {
+            return res.status(404).json({ "msg": "Usuário não encontrado" });
+        }
+        res.status(200).json({"msg": "Usuario excluido com sucesso"});
+    } catch (error) {
+        console.error("Error: erro ao excluir o usuario",error);
+        res.status(500).json({"msg": "Erro ao excluir o usuario"});
+    }
+});
+
+export default router;

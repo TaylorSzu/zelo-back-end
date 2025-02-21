@@ -1,6 +1,5 @@
-import { DataTypes } from "sequelize";  
-import sequelize from "../Database/Database";
-import user from "../Models/userModel.js";
+import { DataTypes } from "sequelize";
+import sequelize from "../Database/Database.js";
 
 const Suporte = sequelize.define("Suporte", {
     id: {
@@ -38,13 +37,7 @@ const Suporte = sequelize.define("Suporte", {
     timestamps: true,
 });
 
-user.hasMany(Suporte, { foreignKey: "usuario_id", onDelete: "CASCADE" });
-Suporte.belongsTo(user, { foreignKey: "usuario_id" });
-
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela Contratantes sincronizada");
-    })
+sequelize.sync({})
     .catch((error) => {
         console.error("Erro ao sincronizar a tabela Contratantes", error);
     });

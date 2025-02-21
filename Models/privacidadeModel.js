@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database";
-import user from "../Models/userModel.js";
+import sequelize from "../Database/Database.js";
 
 const Privacidade = sequelize.define("Privacidade", {
     id: {
@@ -32,9 +31,6 @@ const Privacidade = sequelize.define("Privacidade", {
     tableName: "privacidade",
     timestamps: true,
 });
-
-user.hasMany(Privacidade, { foreignKey: "usuarioId", onDelete: "CASCADE" });
-Privacidade.belongsTo(user, { foreignKey: "usuarioId" });
 
 sequelize.sync()
     .then(() => {
