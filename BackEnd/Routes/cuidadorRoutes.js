@@ -2,7 +2,7 @@ import cuidador from "../Services/cuidadorService.js";
 import express from "express";
 import authMiddleware from "../Jwt/middleware.js";
 import {gerarToken} from "../Jwt/jwt.js";
-
+import database from "../Database/Database.js";
 const router = express.Router();
 
 router.post("/cuidador/registrar", async (req, res) => {
@@ -13,6 +13,9 @@ router.post("/cuidador/registrar", async (req, res) => {
         }
         console.log("Recebendo dados para registrar:", user);
         const novoCuidador = await cuidador.registrarCuidador(user);
+        await database.sync().then(() => {
+            return cuidador.registrarCuidador(user);
+        })
         const token = gerarToken(novoCuidador.id);        
         res.status(201).json({"msg": "Cuidador registrado com sucesso", "token": token}); 
     } catch (error) {
