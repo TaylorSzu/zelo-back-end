@@ -6,7 +6,6 @@ const sequelize = new Sequelize('zelo_db', 'zelo_admin', 'fas7HFiue3fa', {
     port: 23306,
     dialect: 'mysql',
     ssl: false, 
-    logging: false,
 });
 
 sequelize.authenticate()
