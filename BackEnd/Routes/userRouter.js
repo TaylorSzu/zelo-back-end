@@ -2,6 +2,7 @@ import usuario from "../Services/userServices.js";
 import express from "express";
 import authMiddleware from "../Jwt/middleware.js";
 import {gerarToken} from "../Jwt/jwt.js";
+import database from "../Database/Database.js";
 
 const router = express.Router();
 
@@ -14,6 +15,9 @@ router.post("/usuario/registrar", async (req, res) => {
         console.log("Recebendo dados para registrar:", user);
         const novoUsuario = await usuario.registrarUsuario(user);
         const token = gerarToken(novoUsuario.id);
+        await database.sync().then(() => {
+            return usuario.registrarUsuario(user);
+        });
         
         res.status(201).json({"msg": "Usuario registrado com sucesso", "token": token}); 
     } catch (error) {
@@ -29,6 +33,11 @@ router.post("/usuario/login", async (req, res) => {
             return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
         }
         const user = await usuario.login(email, senha);
+        database.sync().then(() => {
+            if(usuario.login(email, senha) == null){
+                return res.status(404).json({"msg": "Usuario nao encontrado"});
+            }
+        })
         if(user == null){
             return res.status(404).json({"msg": "Usuario nao encontrado"});
         }
@@ -89,6 +98,9 @@ router.delete("/usuario/excluir/:id", authMiddleware, async (req, res) => {
     try {
         const id = req.params.id;
        const user = await usuario.excluirUsuario(id);
+       await database.sync().then(() => {
+        return usuario.excluirUsuario(id);
+       });
         if (!user) {
             return res.status(404).json({ "msg": "Usuário não encontrado" });
         }
