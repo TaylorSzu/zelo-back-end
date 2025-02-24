@@ -6,13 +6,13 @@ import bodyParser from 'body-parser';
 import fileUpload from 'express-fileupload';
 import path from 'path';
 import userRoutes from '../BackEnd/Routes/userRouter.js';
-import axios from 'axios';
+import cuidadorRoutes from '../BackEnd/Routes/cuidadorRoutes.js';
 
 const urlPost = 'http://localhost:5173/data';
 
 //Porta do servidor
 const app = express();
-const port = 5173;
+const port = 5171;
 
 // Configuração de middlewares (ordem correta)
 app.use(express.json()); // Processa JSON corretamente
@@ -40,6 +40,7 @@ app.set('view engine', 'ejs');
 
 // Rotas
 app.use(userRoutes);
+app.use(cuidadorRoutes);
 
 // Teste de funcionamento
 

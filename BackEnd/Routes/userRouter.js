@@ -40,7 +40,7 @@ router.post("/usuario/login", async (req, res) => {
     }
 });
 
-router.get("/usuario/listar", async (req, res) => {
+router.get("/usuario/listar", authMiddleware, async (req, res) => {
     try {
         const users = await usuario.listarUsuarios();
         if(users == null){
@@ -53,9 +53,9 @@ router.get("/usuario/listar", async (req, res) => {
     }
 });
 
-router.get("/usuario/encontrar/:id", async (req, res) => {
+router.get("/usuario/encontrar", authMiddleware, async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.user.id;
         const user = await usuario.encontrarUsuario(id);
         if(user == null){
             return res.status(404).json({"msg": "Usuario nao encontrado"});
@@ -67,7 +67,7 @@ router.get("/usuario/encontrar/:id", async (req, res) => {
     }
 });
 
-router.put("/usuario/alterar/:id", async (req, res) => {
+router.put("/usuario/alterar/:id", authMiddleware, async (req, res) => {
     try {
         const id = req.params.id;
         const user = req.body;
@@ -85,7 +85,7 @@ router.put("/usuario/alterar/:id", async (req, res) => {
     }
 });
 
-router.delete("/usuario/excluir/:id", async (req, res) => {
+router.delete("/usuario/excluir/:id", authMiddleware, async (req, res) => {
     try {
         const id = req.params.id;
        const user = await usuario.excluirUsuario(id);

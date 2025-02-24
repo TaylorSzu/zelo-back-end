@@ -1,11 +1,15 @@
 import cuidador from '../Models/cuidadorModel.js'
+import Usuario from '../Models/userModel.js'
 
 function registrarCuidador(cuidar) {
     return cuidador.create(cuidar);
 }
 
 function listarCuidador(){
-    return cuidador.findAll();
+    return cuidador.findAll({include: {
+        model: Usuario,
+        attributes: {exclude: ["senha"]}
+    }});
 }
 
 async function encontrarCuidador(id){
@@ -31,3 +35,5 @@ async function excluirCuidador(id){
         return null;
     }
 }
+
+export default {registrarCuidador, listarCuidador, encontrarCuidador, editarCuidador, excluirCuidador}

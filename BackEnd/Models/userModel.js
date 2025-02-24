@@ -36,7 +36,7 @@ const Usuario = sequelize.define("User",
             allowNull: false,
         },
         tipoUsuario: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: false,
         },
         status: {
