@@ -51,6 +51,7 @@ express-fileupload
 jwtwebtoken
 ejs
 express-session
+chalk@4
 ```
 
 ## Como Usar
@@ -59,10 +60,16 @@ Para usar o zElo, siga essas etapas:
 
 > Abra o CMD e busque o diretorio do Projeto, digite o comando junto com o local do projeto, por exemplo: 
 ```
-cd Desktop/Pasta/zElo-2.0/BackEnd
+cd Desktop/zelo-back-end/
 ```
-
+> Importe todas as libs usadas, digitando:
+```
+npm i
+```
 > Após isto, inicie o Projeto digitando:
+```
+cd Desktop/zelo-back-end/BackEnd
+```
 ```
 node index.js
 ```
