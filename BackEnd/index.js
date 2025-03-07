@@ -8,6 +8,7 @@ import path from 'path';
 import userRoutes from '../BackEnd/Routes/userRouter.js';
 import cuidadorRoutes from '../BackEnd/Routes/cuidadorRoutes.js';
 import userLogs from '../BackEnd/Logs/UserLogs.js';
+import cuidadoresLogs from '../BackEnd/Logs/CuidadorLogs.js';
 
 
 //Porta do servidor
