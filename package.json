@@ -1,4 +1,5 @@
 {
+  "type":"module",
   "dependencies": {
     "ansi-styles": "^6.2.1",
     "axios": "^1.7.9",

@@ -16,4 +16,8 @@ sequelize.authenticate()
         console.error('Erro de conexão com o banco de dados', erro);
     });
 
+sequelize.sync({}).then(() => {
+    return console.log(sequelize.getQueryInterface().showAllTables());
+});
+
 export default sequelize;

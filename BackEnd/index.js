@@ -8,7 +8,7 @@ import path from 'path';
 import userRoutes from '../BackEnd/Routes/userRouter.js';
 import cuidadorRoutes from '../BackEnd/Routes/cuidadorRoutes.js';
 
-const urlPost = 'http://localhost:5173/data';
+const urlPost = 'http://localhost:5173/';
 
 //Porta do servidor
 const app = express();
