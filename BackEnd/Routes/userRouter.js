@@ -2,8 +2,10 @@ import usuario from "../Services/userServices.js";
 import express from "express";
 import authMiddleware from "../Jwt/middleware.js";
 import {gerarToken} from "../Jwt/jwt.js";
+import cookieParser from "cookie-parser";
 
 const router = express.Router();
+router.use(cookieParser());
 
 router.post("/usuario/registrar", async (req, res) => {
     try {
@@ -12,10 +14,9 @@ router.post("/usuario/registrar", async (req, res) => {
             return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
         }
         console.log("Recebendo dados para registrar:", user);
-        const novoUsuario = await usuario.registrarUsuario(user);
-        const token = gerarToken(novoUsuario.id);
+        await usuario.registrarUsuario(user);
         
-        res.status(201).json({"msg": "Usuario registrado com sucesso", "token": token}); 
+        res.status(201).json({"msg": "Usuario registrado com sucesso"}); 
     } catch (error) {
         console.error("Error: erro ao cadastrar o usuario",error);
         res.status(500).json({"msg": "Erro ao cadastrar o usuario"});
@@ -33,11 +34,18 @@ router.post("/usuario/login", async (req, res) => {
             return res.status(404).json({"msg": "Usuario nao encontrado"});
         }
         const token = gerarToken(user.id);
+
+        res.cookie("token", token);
         res.status(200).json({"token": token});
     } catch (error) {
         console.error("Erro ao fazer login:", error);
         res.status(500).json({ "msg": "Erro ao realizar login" });
     }
+});
+
+router.post("/usuario/logout", (req, res) => {
+    res.clearCookie("token");
+    res.json({ "msg": "Logout realizado com sucesso" });
 });
 
 router.get("/usuario/listar", authMiddleware, async (req, res) => {
@@ -85,9 +93,9 @@ router.put("/usuario/alterar/:id", authMiddleware, async (req, res) => {
     }
 });
 
-router.delete("/usuario/excluir/:id", authMiddleware, async (req, res) => {
+router.delete("/usuario/excluir", authMiddleware, async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.user.id;
        const user = await usuario.excluirUsuario(id);
         if (!user) {
             return res.status(404).json({ "msg": "Usuário não encontrado" });
