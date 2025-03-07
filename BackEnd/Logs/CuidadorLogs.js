@@ -1,18 +1,17 @@
-//LOGS DE SERVIÇOS
-import User from "../Models/userModel.js";
+import Cuidador from "../Models/cuidadorModel.js";
 import connected from "../Database/Database.js";
 import chalk from "chalk";
 
 
 connected.sync({})
     .then(() => {
-        return User.findAll(); 
+        return Cuidador.findAll(); 
     })
-    .then(users => {
-        console.log(chalk.yellow("TABELA REFERENTE:", User.getTableName()));
+    .then(cuidadores => {
+        console.log(chalk.yellow("TABELA REFERENTE:", Cuidador.getTableName()));
     })
     .catch(error => {
         console.error("Erro ao sincronizar a tabela", error);
     });
 
-    export default User;
+    export default Cuidador;
