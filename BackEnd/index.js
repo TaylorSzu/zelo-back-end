@@ -14,11 +14,15 @@ const urlPost = 'http://localhost:5173/';
 const app = express();
 const port = 5171;
 
+app.use(cors({
+    origin: 'http://localhost:5173', // O endereço do seu frontend (ajuste conforme necessário)
+    credentials: true, // Permite o envio de cookies, como o token JWT
+}));
+
 // Configuração de middlewares (ordem correta)
 app.use(express.json()); // Processa JSON corretamente
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
 
 // Configuração de sessão (corrigido)
 app.use(session({

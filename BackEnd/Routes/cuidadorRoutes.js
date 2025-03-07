@@ -24,7 +24,7 @@ router.post("/cuidador/registrar", async (req, res) => {
     }
 });
 
-router.get("/cuidador/listar", async (req, res) => {
+router.get("/cuidador/listar", authMiddleware, async (req, res) => {
     try {
         const users = await cuidador.listarCuidador();
         res.status(200).json(users);

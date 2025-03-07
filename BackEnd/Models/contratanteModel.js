@@ -30,7 +30,7 @@ const Contratantes = sequelize.define("Contratantes", {
     timestamps: true,
 });
 
-user.hasMany(Cuidadores, {foreignKey: "usuarioId", onDelete: "CASCADE"});
+user.hasMany(Contratantes, {foreignKey: "usuarioId", onDelete: "CASCADE"});
 Contratantes.belongsTo(user, {foreignKey: "usuarioId"});
 
 sequelize.sync()

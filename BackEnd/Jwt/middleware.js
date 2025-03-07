@@ -1,15 +1,14 @@
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = 'SuaChaveSecretaAqui'
+const JWT_SECRET = "SuaChaveSecretaAqui";
 
 const authMiddleware = (req, res, next) => {
-  const authHeader = req.header("Authorization");
+  // Buscar o token no cookie
+  const token = req.cookies?.token; 
 
-  if (!authHeader) {
+  if (!token) {
     return res.status(401).json({ error: "Acesso negado. Token não fornecido." });
   }
-
-  const token = authHeader.replace("Bearer ", ""); 
 
   try {
     const decoded = jwt.verify(token, JWT_SECRET);
