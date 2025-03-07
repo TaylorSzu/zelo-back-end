@@ -32,7 +32,7 @@ const Privacidade = sequelize.define("Privacidade", {
     timestamps: true,
 });
 
-sequelize.sync()
+sequelize.sync({alter : true})
     .then(() => {
         console.log("Tabela Contratantes sincronizada");
     })

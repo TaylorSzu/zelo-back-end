@@ -65,7 +65,7 @@ Agendamento.belongsTo(Contratantes, { foreignKey: "contratanteId", onDelete: "CA
 Agendamento.belongsTo(Cuidadores, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
 
 sequelize
-  .sync()
+  .sync({alter: true})
   .then(() => {
     console.log("Tabela de agendamentos sincronizada.");
   })

@@ -2,11 +2,9 @@ import usuario from "../Services/userServices.js";
 import express from "express";
 import authMiddleware from "../Jwt/middleware.js";
 import {gerarToken} from "../Jwt/jwt.js";
-<<<<<<< HEAD
 import cookieParser from "cookie-parser";
-=======
 import database from "../Database/Database.js";
->>>>>>> b7d14798b23367e91c7c9c77cad9ef45fdaffc23
+
 
 const router = express.Router();
 router.use(cookieParser());
@@ -18,15 +16,13 @@ router.post("/usuario/registrar", async (req, res) => {
             return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
         }
         console.log("Recebendo dados para registrar:", user);
-<<<<<<< HEAD
+
         await usuario.registrarUsuario(user);
-=======
         const novoUsuario = await usuario.registrarUsuario(user);
         const token = gerarToken(novoUsuario.id);
         await database.sync().then(() => {
             return usuario.registrarUsuario(user);
         });
->>>>>>> b7d14798b23367e91c7c9c77cad9ef45fdaffc23
         
         res.status(201).json({"msg": "Usuario registrado com sucesso"}); 
     } catch (error) {

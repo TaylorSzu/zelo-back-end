@@ -37,7 +37,7 @@ const Cancelamentos = sequelize.define("Cancelamentos", {
     timestamps: true,
 });
 
-sequelize.sync()
+sequelize.sync({alter: true})
     .then(() => {
         console.log("Tabela Contratantes sincronizada");
     })

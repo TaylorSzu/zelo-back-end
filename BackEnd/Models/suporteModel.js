@@ -37,7 +37,7 @@ const Suporte = sequelize.define("Suporte", {
     timestamps: true,
 });
 
-sequelize.sync({})
+sequelize.sync({alter : true})
     .catch((error) => {
         console.error("Erro ao sincronizar a tabela Contratantes", error);
     });

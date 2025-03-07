@@ -51,7 +51,7 @@ const Usuario = sequelize.define("User",
     }
 );
 
-sequelize.sync()
+sequelize.sync({alter : true})
     .catch((error) => {
         console.error("Error ao sincronizar a tabela", error)
     });

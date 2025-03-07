@@ -33,7 +33,7 @@ const Contratantes = sequelize.define("Contratantes", {
 user.hasMany(Contratantes, {foreignKey: "usuarioId", onDelete: "CASCADE"});
 Contratantes.belongsTo(user, {foreignKey: "usuarioId"});
 
-sequelize.sync()
+sequelize.sync({alter : true})
     .then(() => {
         console.log("Tabela Contratantes sincronizada");
     })

@@ -43,7 +43,7 @@
     user.hasMany(Cuidadores, {foreignKey: "usuarioId", onDelete: "CASCADE"});
     Cuidadores.belongsTo(user, {foreignKey: "usuarioId"});
 
-sequelize.sync()
+sequelize.sync({ alter: true })
     .then(() =>{
         console.log("Tabela sincronizada")
     })
