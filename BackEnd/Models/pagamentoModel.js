@@ -62,7 +62,7 @@ Pagamento.belongsTo(user, { foreignKey: "contratanteId" });
 Pagamento.belongsTo(user, { foreignKey: "cuidadorId" });
 Pagamento.belongsTo(user, { foreignKey: "agendamentoId" });
 
-sequelize.sync({alter : true})
+sequelize.sync()
     .then(() => {
         console.log("Tabela Contratantes sincronizada");
     })

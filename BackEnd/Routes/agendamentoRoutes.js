@@ -11,10 +11,8 @@ router.post("/agendamento/registrar", authMiddleware, async (req, res) => {
         if (Object.keys(registrarAgendamento).length === 0) {
             return res.status(400).json({ "msg": "Nenhum dado foi fornecido" });
         }
-        
         console.log("Recebendo dados para registrar:", registrarAgendamento);
         await agendamento.registrarAgendamento(registrarAgendamento);
-        
         res.status(201).json({ "msg": "Agendamento registrado com sucesso" });
     } catch (error) {
         console.error("Erro ao cadastrar o agendamento:", error);

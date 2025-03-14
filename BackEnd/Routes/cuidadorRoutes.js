@@ -12,11 +12,9 @@ router.post("/cuidador/registrar", async (req, res) => {
             return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
         }
         console.log("Recebendo dados para registrar:", user);
-        const novoCuidador = await cuidador.registrarCuidador(user);
         await database.sync().then(() => {
             return cuidador.registrarCuidador(user);
-        })
-        const token = gerarToken(novoCuidador.id);        
+        })       
         res.status(201).json({"msg": "Cuidador registrado com sucesso", "token": token}); 
     } catch (error) {
         console.error("Error: erro ao cadastrar o cuidador",error);
