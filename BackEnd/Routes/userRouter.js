@@ -105,9 +105,6 @@ router.delete("/usuario/excluir", authMiddleware, async (req, res) => {
     try {
         const id = req.user.id;
        const user = await usuario.excluirUsuario(id);
-       await database.sync().then(() => {
-        return usuario.excluirUsuario(id);
-       });
         if (!user) {
             return res.status(404).json({ "msg": "Usuário não encontrado" });
         }
