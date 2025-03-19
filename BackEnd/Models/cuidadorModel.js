@@ -1,6 +1,8 @@
     import { DataTypes } from "sequelize";
     import sequelize  from "../Database/Database.js";
-    import user from "../Models/userModel.js";
+    import User from "../Models/userModel.js";
+    import Agendamento from "../Models/agendamentoModel.js";
+    import Contratantes from "../Models/contratanteModel.js";
 
     const Cuidadores = sequelize.define("Cuidadores", {
         id: {
@@ -40,8 +42,13 @@
         timestamps: true,
     });
 
-    user.hasMany(Cuidadores, {foreignKey: "usuarioId", onDelete: "CASCADE"});
-    Cuidadores.belongsTo(user, {foreignKey: "usuarioId"});
+    User.hasMany(Cuidadores, {foreignKey: "usuarioId", onDelete: "CASCADE"});
+    Cuidadores.hasMany(Contratantes, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
+    Cuidadores.hasMany(Agendamento, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
+    
+    Cuidadores.belongsTo(User, {foreignKey: "usuarioId"});
+    Agendamento.belongsTo(Cuidadores, {foreignKey: "cuidadorId"});
+    Contratantes.belongsTo(Cuidadores, {foreignKey: "cuidadorId"});
 
 sequelize.sync()
     .then(() =>{
