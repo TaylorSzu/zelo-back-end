@@ -1,7 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../Database/Database.js";
-import Contratantes from "./contratanteModel.js";
-import Cuidadores from "./cuidadorModel.js";
+import Contratantes from "../Models/contratanteModel.js";
 
 const Agendamento = sequelize.define(
   "Agendamento",
@@ -15,7 +14,7 @@ const Agendamento = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Contratantes,
+        model: Contratantes, 
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -25,7 +24,7 @@ const Agendamento = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: Cuidadores,
+        model: "cuidadores", 
         key: "id",
       },
       onUpdate: "CASCADE",
@@ -59,13 +58,17 @@ const Agendamento = sequelize.define(
   }
 );
 
-Contratantes.hasMany(Agendamento, { foreignKey: "contratanteId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-Cuidadores.hasMany(Agendamento, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-Agendamento.belongsTo(Contratantes, { foreignKey: "contratanteId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-Agendamento.belongsTo(Cuidadores, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
+(async () => {
+  const Cuidadores = (await import("../Models/cuidadorModel.js")).default;
 
-sequelize
-  .sync()
+  Contratantes.hasMany(Agendamento, { foreignKey: "contratanteId", onDelete: "CASCADE", onUpdate: "CASCADE" });
+  Cuidadores.hasMany(Agendamento, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
+
+  Agendamento.belongsTo(Contratantes, { foreignKey: "contratanteId", onDelete: "CASCADE", onUpdate: "CASCADE" });
+  Agendamento.belongsTo(Cuidadores, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
+})();
+
+sequelize.sync({alter: true})
   .then(() => {
     console.log("Tabela de agendamentos sincronizada.");
   })

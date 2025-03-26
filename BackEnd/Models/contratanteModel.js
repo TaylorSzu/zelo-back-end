@@ -1,8 +1,6 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../Database/Database.js";
-import User from "../Models/userModel.js";
-import Cuidador from "../Models/cuidadorModel.js";
-import Agendamento from "../Models/agendamentoModel.js";
+import Usuario from "../Models/userModel.js"; // Certifique-se de que o modelo está correto
 
 const Contratantes = sequelize.define("Contratantes", {
     id: {
@@ -14,6 +12,12 @@ const Contratantes = sequelize.define("Contratantes", {
     usuarioId: {
         type: DataTypes.INTEGER,
         allowNull: true,
+        references: {
+            model: Usuario, 
+            key: "id",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
     },
     necessidades: {
         type: DataTypes.TEXT,
@@ -32,15 +36,11 @@ const Contratantes = sequelize.define("Contratantes", {
     timestamps: true,
 });
 
-User.hasMany(Contratantes, {foreignKey: "usuarioId", onDelete: "CASCADE"});
-Agendamento.hasMany(Contratantes, {foreignKey: "contratanteId", onDelete: "CASCADE"});
-Cuidador.hasMany(Contratantes, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
 
-Contratantes.belongsTo(User, {foreignKey: "usuarioId"});
-Agendamento.belongsTo(Contratantes, {foreignKey: "contratanteId"});
-Cuidador.belongsTo(Contratantes, {foreignKey: "cuidadorId"});
+Usuario.hasMany(Contratantes, { foreignKey: "usuarioId", onDelete: "CASCADE" });
+Contratantes.belongsTo(Usuario, { foreignKey: "usuarioId" });
 
-sequelize.sync()
+sequelize.sync({alter: true})
     .then(() => {
         console.log("Tabela Contratantes sincronizada");
     })
