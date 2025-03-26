@@ -16,10 +16,6 @@ router.post("/usuario/registrar", async (req, res) => {
             return res.status(400).json({"msg": "Nenhum dado foi fornecido"});
         }
         console.log("Recebendo dados para registrar:", user);
-
-        await usuario.registrarUsuario(user);
-        const novoUsuario = await usuario.registrarUsuario(user);
-        const token = gerarToken(novoUsuario.id);
         await database.sync().then(() => {
             return usuario.registrarUsuario(user);
         });

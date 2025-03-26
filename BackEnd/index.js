@@ -7,6 +7,7 @@ import fileUpload from 'express-fileupload';
 import path from 'path';
 import userRoutes from '../BackEnd/Routes/userRouter.js';
 import cuidadorRoutes from '../BackEnd/Routes/cuidadorRoutes.js';
+import agendamentoRoutes from '../BackEnd/Routes/agendamentoRoutes.js';
 import userLogs from '../BackEnd/Logs/UserLogs.js';
 import cuidadoresLogs from '../BackEnd/Logs/CuidadorLogs.js';
 
@@ -46,6 +47,7 @@ app.set('view engine', 'ejs');
 // Rotas
 app.use(userRoutes);
 app.use(cuidadorRoutes);
+app.use(agendamentoRoutes);
 
 // Teste de funcionamento
 
