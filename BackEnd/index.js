@@ -48,7 +48,10 @@ app.set('view engine', 'ejs');
 app.use(userRoutes);
 app.use(cuidadorRoutes);
 app.use(agendamentoRoutes);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 855b617cfb288980e6ea5456aeb73196893f41da
 
 // Teste de funcionamento
 
