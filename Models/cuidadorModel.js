@@ -41,21 +41,4 @@ const Cuidadores = sequelize.define("Cuidadores", {
     timestamps: true,
 });
 
-// Relacionamentos
-User.hasMany(Cuidadores, { foreignKey: "usuarioId", onDelete: "CASCADE" });
-Cuidadores.hasMany(Contratantes, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
-Cuidadores.hasMany(Agendamento, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
-
-Cuidadores.belongsTo(User, { foreignKey: "usuarioId" });
-Agendamento.belongsTo(Cuidadores, { foreignKey: "cuidadorId" });
-Contratantes.belongsTo(Cuidadores, { foreignKey: "cuidadorId" });
-
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela", error);
-    });
-
 module.exports = Cuidadores;

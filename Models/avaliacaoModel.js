@@ -28,12 +28,5 @@ const Avaliacao = sequelize.define("avaliações", {
     timestamps: true,
 });
 
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela", error);
-    });
 
 module.exports = Avaliacao;

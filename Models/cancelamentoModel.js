@@ -37,12 +37,5 @@ const Cancelamentos = sequelize.define("Cancelamentos", {
     timestamps: true,
 });
 
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela Contratantes sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Contratantes", error);
-    });
 
 module.exports = Cancelamentos;

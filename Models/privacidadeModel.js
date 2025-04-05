@@ -32,12 +32,5 @@ const Privacidade = sequelize.define("Privacidade", {
     timestamps: true,
 });
 
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela Privacidade sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Privacidade", error);
-    });
 
 module.exports = Privacidade;

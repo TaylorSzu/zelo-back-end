@@ -37,9 +37,6 @@ const Suporte = sequelize.define("Suporte", {
     timestamps: true,
 });
 
-sequelize.sync()
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Suporte", error);
-    });
+
 
 module.exports = Suporte;

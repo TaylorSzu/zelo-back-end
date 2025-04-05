@@ -22,7 +22,7 @@ const Agendamento = sequelize.define("Agendamento", {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: "cuidadores", // Nome da tabela como string
+            model: "cuidadores",
             key: "id",
         },
         onUpdate: "CASCADE",
@@ -54,23 +54,5 @@ const Agendamento = sequelize.define("Agendamento", {
     timestamps: true,
 });
 
-// Importar dinamicamente os Cuidadores
-(async () => {
-    const Cuidadores = require("../Models/cuidadorModel");
-
-    Contratantes.hasMany(Agendamento, { foreignKey: "contratanteId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-    Cuidadores.hasMany(Agendamento, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-
-    Agendamento.belongsTo(Contratantes, { foreignKey: "contratanteId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-    Agendamento.belongsTo(Cuidadores, { foreignKey: "cuidadorId", onDelete: "CASCADE", onUpdate: "CASCADE" });
-})();
-
-sequelize.sync({ alter: true })
-    .then(() => {
-        console.log("Tabela de agendamentos sincronizada.");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela de agendamentos", error);
-    });
 
 module.exports = Agendamento;

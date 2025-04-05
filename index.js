@@ -9,6 +9,7 @@ const userRoutes = require('../BackEnd/Routes/userRouter.js');
 const cuidadorRoutes = require('../BackEnd/Routes/cuidadorRoutes.js');
 const agendamentoRoutes = require('../BackEnd/Routes/agendamentoRoutes.js');
 const contratanteRoutes = require('../BackEnd/Routes/contratanteRoutes.js');
+const { associarModelos } = require("../BackEnd/Database/associacao.js");
 const userLogs = require('../BackEnd/Logs/UserLogs.js');
 const cuidadoresLogs = require('../BackEnd/Logs/CuidadorLogs.js');
 
@@ -43,6 +44,9 @@ app.use(fileUpload({
 // Configuração de arquivos estáticos e template engine
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+
+// Associações das Models
+associarModelos();
 
 // Rotas
 app.use(userRoutes);

@@ -36,15 +36,4 @@ const Contratantes = sequelize.define("Contratantes", {
     timestamps: true,
 });
 
-Usuario.hasMany(Contratantes, { foreignKey: "usuarioId", onDelete: "CASCADE" });
-Contratantes.belongsTo(Usuario, { foreignKey: "usuarioId" });
-
-sequelize.sync({ alter: true })
-    .then(() => {
-        console.log("Tabela Contratantes sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Contratantes", error);
-    });
-
 module.exports = Contratantes;

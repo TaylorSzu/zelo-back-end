@@ -55,19 +55,5 @@ const Pagamento = sequelize.define("Pagamento", {
     }
 );
 
-user.hasMany(Pagamento, { foreignKey: "contratanteId", onDelete: "CASCADE" });
-user.hasMany(Pagamento, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
-user.hasMany(Pagamento, { foreignKey: "agendamentoId", onDelete: "CASCADE" });
-Pagamento.belongsTo(user, { foreignKey: "contratanteId" });
-Pagamento.belongsTo(user, { foreignKey: "cuidadorId" });
-Pagamento.belongsTo(user, { foreignKey: "agendamentoId" });
-
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela Pagamentos sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Pagamentos", error);
-    });
 
 module.exports = Pagamento;
