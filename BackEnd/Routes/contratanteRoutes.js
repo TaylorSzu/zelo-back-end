@@ -1,13 +1,13 @@
-import Contratante from "../Services/contratanteService.js";
-import express from "express";
-import authMiddleware from "../Jwt/middleware.js";
+const express = require("express");
+const Contratante = require("../Services/contratanteService.js");
+const authMiddleware = require("../Jwt/middleware.js");
 
 const router = express.Router();
 
 router.post("/contratante/registrar", authMiddleware, async (req, res) => {
     try {
         const user = req.body;
-        if(Object.keys(user).length == 0){
+        if (Object.keys(user).length == 0) {
             return res.status(400).json({ "msg": "Nenhum dado foi fornecido" });
         }
         console.log("Recebendo dados para registrar:", user);
@@ -29,4 +29,4 @@ router.get("/contratante/listar", authMiddleware, async (req, res) => {
     }
 });
 
-export default router;
+module.exports = router;

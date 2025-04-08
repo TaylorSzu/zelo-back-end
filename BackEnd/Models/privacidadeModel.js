@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../Database/Database");
 
 const Privacidade = sequelize.define("Privacidade", {
     id: {
@@ -32,12 +32,5 @@ const Privacidade = sequelize.define("Privacidade", {
     timestamps: true,
 });
 
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela Contratantes sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Contratantes", error);
-    });
 
-export default Privacidade;
+module.exports = Privacidade;

@@ -1,6 +1,6 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
-import Usuario from "../Models/userModel.js"; // Certifique-se de que o modelo está correto
+const { DataTypes } = require("sequelize");
+const sequelize = require("../Database/Database");
+const Usuario = require("../Models/userModel"); // Certifique-se de que o modelo está correto
 
 const Contratantes = sequelize.define("Contratantes", {
     id: {
@@ -13,7 +13,7 @@ const Contratantes = sequelize.define("Contratantes", {
         type: DataTypes.INTEGER,
         allowNull: true,
         references: {
-            model: Usuario, 
+            model: Usuario,
             key: "id",
         },
         onUpdate: "CASCADE",
@@ -36,16 +36,4 @@ const Contratantes = sequelize.define("Contratantes", {
     timestamps: true,
 });
 
-
-Usuario.hasMany(Contratantes, { foreignKey: "usuarioId", onDelete: "CASCADE" });
-Contratantes.belongsTo(Usuario, { foreignKey: "usuarioId" });
-
-sequelize.sync({alter: true})
-    .then(() => {
-        console.log("Tabela Contratantes sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Contratantes", error);
-    });
-
-export default Contratantes;
+module.exports = Contratantes;

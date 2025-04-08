@@ -1,35 +1,39 @@
+const avaliacao = require("../Models/avaliacaoModel");
 
-import avaliacao from "../Models/avaliacaoModel.js";
-
-function registrarAvaliacao(avaliar){
+function registrarAvaliacao(avaliar) {
     return avaliacao.create(avaliar);
 }
 
-function listarAvaliacao(){
+function listarAvaliacao() {
     return avaliacao.findAll();
 }
 
-async function encontrarAvaliacao(id){
+async function encontrarAvaliacao(id) {
     return await avaliacao.findByPk(id);
 }
 
-
-async function editarAvaliacao(id, avaliar){
-    const AvaliacaoEncontrado = encontrarAvaliacao(id);
-    if (AvaliacaoEncontrado) {
-        return await AvaliacaoEncontrado.update(avaliar);
+async function editarAvaliacao(id, avaliar) {
+    const avaliacaoEncontrada = await encontrarAvaliacao(id);
+    if (avaliacaoEncontrada) {
+        return await avaliacaoEncontrada.update(avaliar);
     } else {
         return null;
     }
 }
 
-async function excluirAvaliacao(id){
-    const AvaliacaoEncontrado = encontrarAvaliacao(id);
-    if (AvaliacaoEncontrado) {
-        return await AvaliacaoEncontrado.destroy();
+async function excluirAvaliacao(id) {
+    const avaliacaoEncontrada = await encontrarAvaliacao(id);
+    if (avaliacaoEncontrada) {
+        return await avaliacaoEncontrada.destroy();
     } else {
         return null;
     }
 }
 
-export default {registrarAvaliacao, listarAvaliacao, encontrarAvaliacao, editarAvaliacao, excluirAvaliacao};
+module.exports = {
+    registrarAvaliacao,
+    listarAvaliacao,
+    encontrarAvaliacao,
+    editarAvaliacao,
+    excluirAvaliacao
+};

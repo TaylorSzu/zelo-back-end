@@ -1,20 +1,18 @@
+const suporte = require("../Models/suporteModel");
 
-import suporte from "../Models/suporteModel.js";
-
-function registrarSuporte(suport){
+function registrarSuporte(suport) {
     return suporte.create(suport);
 }
 
-function listarSuporte(){
+function listarSuporte() {
     return suporte.findAll();
 }
 
-async function encontrarSuporte(id){
+async function encontrarSuporte(id) {
     return suporte.findByPk(id);
 }
 
-
-async function editarSuporte(id, suport){
+async function editarSuporte(id, suport) {
     const SuporteEncontrado = await encontrarSuporte(id);
     if (SuporteEncontrado) {
         return SuporteEncontrado.update(suport);
@@ -23,7 +21,7 @@ async function editarSuporte(id, suport){
     }
 }
 
-async function excluirSuporte(id){
+async function excluirSuporte(id) {
     const SuporteEncontrado = await encontrarSuporte(id);
     if (SuporteEncontrado) {
         return SuporteEncontrado.destroy();
@@ -32,4 +30,10 @@ async function excluirSuporte(id){
     }
 }
 
-export default {registrarSuporte, listarSuporte, encontrarSuporte, editarSuporte, excluirSuporte};
+module.exports = {
+    registrarSuporte,
+    listarSuporte,
+    encontrarSuporte,
+    editarSuporte,
+    excluirSuporte
+};

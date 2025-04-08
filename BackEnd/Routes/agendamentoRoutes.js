@@ -1,6 +1,6 @@
-import agendamento from "../Services/agendamentoService.js";
-import express from "express";
-import authMiddleware from "../Jwt/middleware.js";
+const express = require('express');
+const agendamento = require('../Services/agendamentoService');
+const authMiddleware = require('../Jwt/middleware');
 
 const router = express.Router();
 
@@ -21,14 +21,17 @@ router.post("/agendamento/registrar", authMiddleware, async (req, res) => {
 });
 
 // Confirmar Agendamento
-router.post("/agendamento/confirmar", authMiddleware, async (req, res) => {
+router.put("/agendamento/confirmar", authMiddleware, async (req, res) => {
     try {
         const { id } = req.body;
-        const cuidadorId = req.user.id;
+        const cuidadorId = req.body;
+
+        console.log("🔐 ID do cuidador (middleware):", cuidadorId);
+        console.log("📨 ID do agendamento (body):", id);
+
         if (!id) {
             return res.status(400).json({ "msg": "ID do agendamento não foi fornecido" });
         }
-
         await agendamento.aceitarAgendamento(id, cuidadorId);
         console.log("Agendamento confirmado:", id);
 
@@ -40,7 +43,7 @@ router.post("/agendamento/confirmar", authMiddleware, async (req, res) => {
 });
 
 // Cancelar Agendamento
-router.post("/agendamento/cancelar", authMiddleware, async (req, res) => {
+router.put("/agendamento/cancelar", authMiddleware, async (req, res) => {
     try {
         const { id } = req.body;
         const userId = req.user.id; // Pegando o ID do usuário logado
@@ -69,5 +72,4 @@ router.delete("/agendamento/limpar", authMiddleware, async (req, res) => {
     }
 });
 
-
-export default router;
+module.exports = router;

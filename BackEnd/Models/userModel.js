@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js"
+const { DataTypes } = require("sequelize");
+const sequelize = require("../Database/Database");
 
 const Usuario = sequelize.define("User",
     {
@@ -50,9 +50,4 @@ const Usuario = sequelize.define("User",
     }
 );
 
-sequelize.sync({alter: true})
-    .catch((error) => {
-        console.error("Error ao sincronizar a tabela", error)
-    });
-
-export default Usuario;
+module.exports = Usuario;

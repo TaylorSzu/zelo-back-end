@@ -1,20 +1,18 @@
+const pagamento = require("../Models/pagamentoModel");
 
-import pagamento from "../Models/pagamentoModel.js";
-
-function registrarPagamento(pagar){
+function registrarPagamento(pagar) {
     return pagamento.create(pagar);
 }
 
-function listarPagamento(){
+function listarPagamento() {
     return pagamento.findAll();
 }
 
-async function encontrarPagamento(id){
+async function encontrarPagamento(id) {
     return pagamento.findByPk(id);
 }
 
-
-async function editarPagamento(id, pagar){
+async function editarPagamento(id, pagar) {
     const PagamentoEncontrado = await encontrarPagamento(id);
     if (PagamentoEncontrado) {
         return PagamentoEncontrado.update(pagar);
@@ -23,7 +21,7 @@ async function editarPagamento(id, pagar){
     }
 }
 
-async function excluirPagamento(id){
+async function excluirPagamento(id) {
     const PagamentoEncontrado = await encontrarPagamento(id);
     if (PagamentoEncontrado) {
         return PagamentoEncontrado.destroy();
@@ -32,4 +30,10 @@ async function excluirPagamento(id){
     }
 }
 
-export default {registrarPagamento, listarPagamento, encontrarPagamento, editarPagamento, excluirPagamento};
+module.exports = {
+    registrarPagamento,
+    listarPagamento,
+    encontrarPagamento,
+    editarPagamento,
+    excluirPagamento
+};

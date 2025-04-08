@@ -1,6 +1,6 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
-import user from "../Models/userModel.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../Database/Database");
+const user = require("../Models/userModel");
 
 const Pagamento = sequelize.define("Pagamento", {
         id: {
@@ -55,19 +55,5 @@ const Pagamento = sequelize.define("Pagamento", {
     }
 );
 
-user.hasMany(Pagamento, { foreignKey: "contratanteId", onDelete: "CASCADE" });
-user.hasMany(Pagamento, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
-user.hasMany(Pagamento, { foreignKey: "agendamentoId", onDelete: "CASCADE" });
-Pagamento.belongsTo(user, { foreignKey: "contratanteId" });
-Pagamento.belongsTo(user, { foreignKey: "cuidadorId" });
-Pagamento.belongsTo(user, { foreignKey: "agendamentoId" });
 
-sequelize.sync()
-    .then(() => {
-        console.log("Tabela Contratantes sincronizada");
-    })
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Contratantes", error);
-    });
-
-export default Pagamento;
+module.exports = Pagamento;

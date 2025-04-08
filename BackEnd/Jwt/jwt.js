@@ -1,8 +1,8 @@
-import jwt from "jsonwebtoken";
+const jwt = require('jsonwebtoken');
 
 // Defina a chave secreta e o tempo de expiração diretamente
 const JWT_SECRET = 'SuaChaveSecretaAqui';
-const JWT_EXPIRES = '1h'; // Defina o tempo de expiração desejado, por exemplo, 1 hora
+const JWT_EXPIRES = '1h'; // Exemplo: 1 hora
 
 const gerarToken = (userId, userType) => {
   return jwt.sign({ id: userId, type: userType }, JWT_SECRET, {
@@ -18,4 +18,4 @@ const verificarToken = (token) => {
   }
 };
 
-export { gerarToken, verificarToken };
+module.exports = { gerarToken, verificarToken };

@@ -1,42 +1,32 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../Database/Database");
 
-const Avaliacao = sequelize.define("avaliações",
-    {
-        id: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            autoIncrement: true,
-        },
-        contratanteId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        cuidadorId: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        estrelas: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-        },
-        comentario: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        }
+const Avaliacao = sequelize.define("avaliações", {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
     },
-    {
-        tableName: "avaliacoes",
-        timestamps: true,
+    contratanteId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    cuidadorId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    estrelas: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    comentario: {
+        type: DataTypes.TEXT,
+        allowNull: true,
     }
-);
-
-sequelize.sync()
-.then(() => {
-    console.log("Tabela sincronizada");
-})
-.catch((error) => {
-    console.error("Erro ao sincronizar a tabela", error);
+}, {
+    tableName: "avaliacoes",
+    timestamps: true,
 });
 
-export default Avaliacao;
+
+module.exports = Avaliacao;

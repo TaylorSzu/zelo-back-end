@@ -1,35 +1,39 @@
+const contratante = require("../Models/contratanteModel");
 
-import contrantante from "../Models/contratanteModel.js";
-
-function registrarContratante(contratar){
-    return contrantante.create(contratar);
+function registrarContratante(contratar) {
+    return contratante.create(contratar);
 }
 
-function listarContratante(){
-    return contrantante.findAll();
+function listarContratante() {
+    return contratante.findAll();
 }
 
-async function encontrarContratante(id){
-    return contrantante.findByPk(id);
+async function encontrarContratante(id) {
+    return contratante.findByPk(id);
 }
 
-
-async function editarContratante(id, contratar){
-    const ContratanteEncontrado = await encontrarContratante(id);
-    if (ContratanteEncontrado) {
-        return ContratanteEncontrado.update(contratar);
+async function editarContratante(id, contratar) {
+    const contratanteEncontrado = await encontrarContratante(id);
+    if (contratanteEncontrado) {
+        return contratanteEncontrado.update(contratar);
     } else {
         return null;
     }
 }
 
-async function excluirContratante(id){
-    const ContratanteEncontrado = await encontrarContratante(id);
-    if (ContratanteEncontrado) {
-        return ContratanteEncontrado.destroy();
+async function excluirContratante(id) {
+    const contratanteEncontrado = await encontrarContratante(id);
+    if (contratanteEncontrado) {
+        return contratanteEncontrado.destroy();
     } else {
         return null;
     }
 }
 
-export default {registrarContratante, listarContratante, encontrarContratante, editarContratante, excluirContratante};
+module.exports = {
+    registrarContratante,
+    listarContratante,
+    encontrarContratante,
+    editarContratante,
+    excluirContratante
+};

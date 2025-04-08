@@ -1,19 +1,18 @@
 // Importações
-import express from 'express';
-import cors from 'cors';
-import session from 'express-session';
-import bodyParser from 'body-parser';
-import fileUpload from 'express-fileupload';
-import path from 'path';
-import userRoutes from '../BackEnd/Routes/userRouter.js';
-import cuidadorRoutes from '../BackEnd/Routes/cuidadorRoutes.js';
-import agendamentoRoutes from '../BackEnd/Routes/agendamentoRoutes.js';
-import contratanteRoutes from '../BackEnd/Routes/contratanteRoutes.js';
-import userLogs from '../BackEnd/Logs/UserLogs.js';
-import cuidadoresLogs from '../BackEnd/Logs/CuidadorLogs.js';
+const express = require('express');
+const cors = require('cors');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
+const path = require('path');
+const userRoutes = require('../BackEnd/Routes/userRouter.js');
+const cuidadorRoutes = require('../BackEnd/Routes/cuidadorRoutes.js');
+const agendamentoRoutes = require('../BackEnd/Routes/agendamentoRoutes.js');
+const contratanteRoutes = require('../BackEnd/Routes/contratanteRoutes.js');
+const { associarModelos } = require("../BackEnd/Database/associacao.js");
+const logs = require("../BackEnd/Logs/logs.js"); 
 
-
-//Porta do servidor
+// Porta do servidor
 const app = express();
 const port = 5171;
 
@@ -45,6 +44,9 @@ app.use(fileUpload({
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 
+// Associações das Models
+associarModelos();
+
 // Rotas
 app.use(userRoutes);
 app.use(cuidadorRoutes);
@@ -52,7 +54,6 @@ app.use(agendamentoRoutes);
 app.use(contratanteRoutes);
 
 // Teste de funcionamento
-
 app.get('/data', (req, res) => {
     res.json({ msg: 'Funcionando' });
 });
@@ -72,4 +73,4 @@ app.listen(port, () => {
 });
 
 // Exportações
-export default { app, path, express, session, bodyParser };
+module.exports = { app, path, express, session, bodyParser };

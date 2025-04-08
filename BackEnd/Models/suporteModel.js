@@ -1,5 +1,5 @@
-import { DataTypes } from "sequelize";
-import sequelize from "../Database/Database.js";
+const { DataTypes } = require("sequelize");
+const sequelize = require("../Database/Database");
 
 const Suporte = sequelize.define("Suporte", {
     id: {
@@ -37,9 +37,6 @@ const Suporte = sequelize.define("Suporte", {
     timestamps: true,
 });
 
-sequelize.sync()
-    .catch((error) => {
-        console.error("Erro ao sincronizar a tabela Contratantes", error);
-    });
 
-export default Suporte;
+
+module.exports = Suporte;

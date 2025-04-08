@@ -1,9 +1,9 @@
-import { Op } from "sequelize";
-import Agendamento from "../Models/agendamentoModel.js"; 
-import Contratantes from "../Models/contratanteModel.js";
-import Cuidadores from "../Models/cuidadorModel.js";
-import User from "../Models/userModel.js";
-import cron from "node-cron";
+const { Op, where } = require("sequelize");
+const Agendamento = require("../Models/agendamentoModel.js");
+const Contratantes = require("../Models/contratanteModel.js");
+const Cuidadores = require("../Models/cuidadorModel.js");
+const User = require("../Models/userModel.js");
+const cron = require("node-cron");
 
 async function registrarAgendamento(agendamento) {
     const contratanteExiste = await Contratantes.findByPk(agendamento.contratanteId);
@@ -17,12 +17,24 @@ async function registrarAgendamento(agendamento) {
     return Agendamento.create(agendamento);
 }
 
-async function aceitarAgendamento(id, userId) {
-    const agendamento = await Agendamento.findOne({ where: { id: id, cuidadorId: userId } });
-    if(!agendamento){
+async function aceitarAgendamento(idAgendamento, idCuidador) {
+
+    console.log("📥 ID do agendamento recebido:", idAgendamento);
+    console.log("📥 ID do cuidador recebido:", idCuidador);
+    
+    const agendamento = await Agendamento.findOne({
+        where: {
+            id: idAgendamento,
+            cuidadorId: idCuidador,
+        }
+    });
+
+    if (!agendamento){
+        console.log("❌ Agendamento não encontrado ou não pertence ao cuidador");
         throw new Error("Agendamento não encontrado ou não pertence a você.");
     }
-    return await Agendamento.update({ status: "confirmado" }, { where: { id: id } });
+
+    return await Agendamento.update( {status: "confirmado"}, {where: {id: idAgendamento}} );
 }
 
 async function cancelarAgendamento(id, userId) {
@@ -60,6 +72,7 @@ async function listarAgendamentosContratante() {
             }
         ]
     });
+    return agendamentos;
 }
 
 async function encontrarAgendamentoCuidadores(id){
@@ -78,7 +91,7 @@ async function encontrarAgendamentoCuidadores(id){
 async function encontrarAgendamentoContratantes(id) {
     const agendamentos = await Agendamento.findOne({where: {id: id},
         include: [
-            {model: Contratantes, attributes:["id", "disponibilidade", "valorHora", "valorPeriodo", "especialidade"],
+            {model: Contratantes, attributes:["id", "necessidades"],
                 include: [
                     {model: User, attributes:["id", "nome", "endereco"]},
                 ]
@@ -110,5 +123,13 @@ cron.schedule("0 3 */2 * *", () => {
     limparAgendamentos();
 });
 
-
-export default { registrarAgendamento ,aceitarAgendamento, cancelarAgendamento, limparAgendamentos };
+module.exports = { 
+    registrarAgendamento, 
+    aceitarAgendamento, 
+    cancelarAgendamento, 
+    listarAgendamentosCuidador, 
+    listarAgendamentosContratante, 
+    encontrarAgendamentoCuidadores, 
+    encontrarAgendamentoContratantes, 
+    limparAgendamentos 
+};
