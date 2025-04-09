@@ -24,10 +24,7 @@ router.post("/agendamento/registrar", authMiddleware, async (req, res) => {
 router.put("/agendamento/confirmar", authMiddleware, async (req, res) => {
     try {
         const { id } = req.body;
-        const cuidadorId = req.body;
-
-        console.log("🔐 ID do cuidador (middleware):", cuidadorId);
-        console.log("📨 ID do agendamento (body):", id);
+        const { cuidadorId } = req.body;
 
         if (!id) {
             return res.status(400).json({ "msg": "ID do agendamento não foi fornecido" });
@@ -45,8 +42,7 @@ router.put("/agendamento/confirmar", authMiddleware, async (req, res) => {
 // Cancelar Agendamento
 router.put("/agendamento/cancelar", authMiddleware, async (req, res) => {
     try {
-        const { id } = req.body;
-        const userId = req.user.id; // Pegando o ID do usuário logado
+        const { id, userId } = req.body;
 
         if (!id) {
             return res.status(400).json({ msg: "ID do agendamento não foi fornecido" });

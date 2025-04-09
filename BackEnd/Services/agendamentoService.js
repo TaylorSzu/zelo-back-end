@@ -18,10 +18,6 @@ async function registrarAgendamento(agendamento) {
 }
 
 async function aceitarAgendamento(idAgendamento, idCuidador) {
-
-    console.log("📥 ID do agendamento recebido:", idAgendamento);
-    console.log("📥 ID do cuidador recebido:", idCuidador);
-    
     const agendamento = await Agendamento.findOne({
         where: {
             id: idAgendamento,
@@ -39,15 +35,31 @@ async function aceitarAgendamento(idAgendamento, idCuidador) {
 
 async function cancelarAgendamento(id, userId) {
     const agendamento = await Agendamento.findOne({ where: { id: id } });
+
     if (!agendamento) {
         throw new Error("Agendamento não encontrado.");
     }
+
+    console.log("🔎 Agendamento encontrado:", {
+        id: agendamento.id,
+        contratanteId: agendamento.contratanteId,
+        cuidadorId: agendamento.cuidadorId,
+        status: agendamento.status
+    });
+
+    // Verifica se o usuário é o contratante ou o cuidador
     if (agendamento.contratanteId !== userId && agendamento.cuidadorId !== userId) {
+        console.log("❌ Usuário não tem permissão para cancelar este agendamento.");
         throw new Error("Você não tem permissão para cancelar este agendamento.");
     }
+
+    // Atualiza o status para cancelado
     await Agendamento.update({ status: "cancelado" }, { where: { id: id } });
+
+    console.log("✅ Agendamento cancelado com sucesso:", id);
     return { msg: "Agendamento cancelado com sucesso." };
 }
+
 
 async function listarAgendamentosCuidador() {
     const agendamentos = await Agendamento.findAll({
