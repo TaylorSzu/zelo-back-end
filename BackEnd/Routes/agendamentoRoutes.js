@@ -20,6 +20,48 @@ router.post("/agendamento/registrar", authMiddleware, async (req, res) => {
     }
 });
 
+router.get("/agendamento/listar/cuidador", authMiddleware, async (req, res) => {
+    try {
+        const agendamentoCuidador = await agendamento.listarAgendamentosCuidador();
+        res.status(200).json(agendamentoCuidador);
+    } catch (error) {
+        console.error("Error: erro ao listar", error);
+        res.status(500).json({"msg": "Error ao listar agendamentos do cuidador"});
+    }
+});
+
+router.get("/agendamento/listar/contratante", authMiddleware, async (req, res) => {
+    try {
+        const agendamentoContratante = await agendamento.listarAgendamentosContratante();
+        res.status(200).json(agendamentoContratante);
+    } catch (error) {
+        console.error("Error: erro ao listar", error);
+        res.status(500).json({"msg": "Error ao listar agendamentos do cuidador"});
+    }
+});
+
+router.post("/agendamento/encontrar/cuidador", authMiddleware, async (req, res) => {
+    try {
+        const { id } = req.body;
+        const agendamentoCuidador = await agendamento.encontrarAgendamentoCuidadores(id);
+        res.status(200).json(agendamentoCuidador);
+    } catch (error) {
+        console.error("Error: erro ao listar", error);
+        res.status(500).json({"msg": "Error ao listar agendamentos do cuidador"});
+    }
+});
+
+router.post("/agendamento/encontrar/contratante", authMiddleware, async (req, res) => {
+    try {
+        const { id } = req.body;
+        const agendamentoContratante = await agendamento.encontrarAgendamentoContratantes(id);
+        res.status(200).json(agendamentoContratante);
+    } catch (error) {
+        console.error("Error: erro ao listar", error);
+        res.status(500).json({"msg": "Error ao listar agendamentos do cuidador"});
+    }
+});
+
 // Confirmar Agendamento
 router.put("/agendamento/confirmar", authMiddleware, async (req, res) => {
     try {
