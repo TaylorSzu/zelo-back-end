@@ -9,6 +9,7 @@ const userRoutes = require('../BackEnd/Routes/userRouter.js');
 const cuidadorRoutes = require('../BackEnd/Routes/cuidadorRoutes.js');
 const agendamentoRoutes = require('../BackEnd/Routes/agendamentoRoutes.js');
 const contratanteRoutes = require('../BackEnd/Routes/contratanteRoutes.js');
+const avaRoutes = require('../BackEnd/Routes/avaliacaoRoutes.js');
 const { associarModelos } = require("../BackEnd/Database/associacao.js");
 const logs = require("../BackEnd/Logs/logs.js"); 
 
@@ -52,6 +53,7 @@ app.use(userRoutes);
 app.use(cuidadorRoutes);
 app.use(agendamentoRoutes);
 app.use(contratanteRoutes);
+app.use(avaliacaoRoutes);
 
 // Teste de funcionamento
 app.get('/data', (req, res) => {

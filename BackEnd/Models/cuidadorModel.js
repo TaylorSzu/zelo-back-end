@@ -23,10 +23,6 @@ const Cuidadores = sequelize.define("Cuidadores", {
         type: DataTypes.DECIMAL(10,2),
         allowNull: false,
     },
-    valorPeriodo: {
-        type: DataTypes.DECIMAL(10,2),
-        allowNull: false,
-    },
     especialidade: {
         type: DataTypes.TEXT,
         allowNull: false

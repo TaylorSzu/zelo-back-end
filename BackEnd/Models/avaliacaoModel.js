@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../Database/Database");
 
-const Avaliacao = sequelize.define("avaliações", {
+const Avaliacao = sequelize.define("Avaliacao", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -18,6 +18,10 @@ const Avaliacao = sequelize.define("avaliações", {
     estrelas: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        validate: {
+            min: 1,
+            max: 5
+        }
     },
     comentario: {
         type: DataTypes.TEXT,
@@ -27,6 +31,5 @@ const Avaliacao = sequelize.define("avaliações", {
     tableName: "avaliacoes",
     timestamps: true,
 });
-
 
 module.exports = Avaliacao;

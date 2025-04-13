@@ -1,4 +1,6 @@
 const avaliacao = require("../Models/avaliacaoModel");
+const Cuidadores = require("../Models/cuidadorModel.js");
+const User = require("../Models/userModel.js");
 
 function registrarAvaliacao(avaliar) {
     return avaliacao.create(avaliar);
