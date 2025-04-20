@@ -31,39 +31,6 @@ router.get("/avaliacao/listar", authMiddleware, async (req, res) => {
     }
 });
 
-// Buscar avaliação por ID
-router.get("/avaliacao/:id", authMiddleware, async (req, res) => {
-    try {
-        const avaliacao = await avaliacaoService.encontrarAvaliacao(req.params.id);
-        if (!avaliacao) {
-            return res.status(404).json({ "msg": "Avaliação não encontrada" });
-        }
-        res.status(200).json(avaliacao);
-    } catch (error) {
-        console.error("Erro ao buscar avaliação:", error);
-        res.status(500).json({ "msg": "Erro ao buscar avaliação" });
-    }
-});
-
-router.put("/avaliacao/editar/:id", authMiddleware, async (req, res) => {
-    try {
-        const dados = req.body;
-        if (Object.keys(dados).length === 0) {
-            return res.status(400).json({ "msg": "Nenhum dado foi fornecido para atualização" });
-        }
-
-        const atualizada = await avaliacaoService.editarAvaliacao(req.params.id, dados);
-        if (!atualizada) {
-            return res.status(404).json({ "msg": "Avaliação não encontrada para editar" });
-        }
-
-        res.status(200).json({ "msg": "Avaliação atualizada com sucesso" });
-    } catch (error) {
-        console.error("Erro ao editar avaliação:", error);
-        res.status(500).json({ "msg": "Erro ao editar avaliação" });
-    }
-});
-
 router.delete("/avaliacao/excluir/:id", authMiddleware, async (req, res) => {
     try {
         const deletada = await avaliacaoService.excluirAvaliacao(req.params.id);
@@ -77,5 +44,7 @@ router.delete("/avaliacao/excluir/:id", authMiddleware, async (req, res) => {
         res.status(500).json({ "msg": "Erro ao excluir avaliação" });
     }
 });
+// Rota para média de avaliações de um cuidador específico
+router.get("/avaliacoes/media/:cuidadorId", avaliacaoController.mediaAvaliacao);
 
 module.exports = router;

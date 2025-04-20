@@ -10,19 +10,6 @@ function listarAvaliacao() {
     return avaliacao.findAll();
 }
 
-async function encontrarAvaliacao(id) {
-    return await avaliacao.findByPk(id);
-}
-
-async function editarAvaliacao(id, avaliar) {
-    const avaliacaoEncontrada = await encontrarAvaliacao(id);
-    if (avaliacaoEncontrada) {
-        return await avaliacaoEncontrada.update(avaliar);
-    } else {
-        return null;
-    }
-}
-
 async function excluirAvaliacao(id) {
     const avaliacaoEncontrada = await encontrarAvaliacao(id);
     if (avaliacaoEncontrada) {
@@ -35,7 +22,5 @@ async function excluirAvaliacao(id) {
 module.exports = {
     registrarAvaliacao,
     listarAvaliacao,
-    encontrarAvaliacao,
-    editarAvaliacao,
     excluirAvaliacao
 };
