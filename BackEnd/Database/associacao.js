@@ -5,6 +5,7 @@ const Cuidador = require("../Models/cuidadorModel.js");
 const Agendamento = require("../Models/agendamentoModel.js");
 const Pagamento = require("../Models/pagamentoModel.js");
 const Idosos = require("../Models/idosoModel");
+const Avaliacao = require("../Models/avaliacaoModel.js");
 
 function associarModelos() {
   // Cuidador
@@ -32,6 +33,13 @@ function associarModelos() {
     onDelete: "CASCADE",
   });
   Agendamento.belongsTo(Contratante, { foreignKey: "contratanteId" });
+
+  //Adicionado relacionamento entre avalições e cuidadores
+  Cuidador.hasMany(Avaliacao, {
+    foreignKey: "cuidadorId",
+    onDelete: "CASCADE",
+  });
+  Avaliacao.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
 
   Contratante.hasMany(Idosos, { foreignKey: "contratanteId" });
   Idosos.belongsTo(Contratante, { foreignKey: "contratanteId" });
@@ -62,5 +70,6 @@ module.exports = {
   Cuidador,
   Agendamento,
   Idosos,
+  Avaliacao,
   associarModelos,
 };
