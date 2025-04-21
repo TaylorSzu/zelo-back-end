@@ -4,28 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fe5f3430-0c9c-4bf8-8470-011a486114cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Database/Database.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Database/Database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Database/associacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Database/associacao.js" afterDir="false" />
+    <list default="true" id="fe5f3430-0c9c-4bf8-8470-011a486114cd" name="Changes" comment="Feat: avalaição">
       <change beforePath="$PROJECT_DIR$/BackEnd/Logs/CuidadorLogs.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Logs/UserLogs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Models/avaliacaoModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/avaliacaoModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/cancelamentoModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Models/cuidadorModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/cuidadorModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/privacidadeModel.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/suporteModel.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/agendamentoRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/agendamentoRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/cuidadorRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/cuidadorRoutes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/userRouter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Services/agendamentoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/agendamentoService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/cancelamentoService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/Services/cuidadorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/cuidadorService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/privacidadeService.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/suporteService.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BackEnd/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,11 +87,24 @@
       <workItem from="1745211348634" duration="363000" />
       <workItem from="1745211724275" duration="1059000" />
       <workItem from="1745253392198" duration="10829000" />
-      <workItem from="1745264529611" duration="1912000" />
+      <workItem from="1745264529611" duration="2134000" />
     </task>
+    <task id="LOCAL-00001" summary="Feat: avalaição">
+      <option name="closed" value="true" />
+      <created>1745268909488</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745268909488</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Feat: avalaição" />
+    <option name="LAST_COMMIT_MESSAGE" value="Feat: avalaição" />
   </component>
 </project>
