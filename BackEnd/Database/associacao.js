@@ -12,16 +12,10 @@ function associarModelos() {
   User.hasMany(Cuidador, { foreignKey: "usuarioId", onDelete: "CASCADE" });
   Cuidador.belongsTo(User, { foreignKey: "usuarioId" });
 
-  Cuidador.hasMany(Agendamento, {
-    foreignKey: "cuidadorId",
-    onDelete: "CASCADE",
-  });
+  Cuidador.hasMany(Agendamento, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
   Agendamento.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
 
-  Cuidador.hasMany(Contratante, {
-    foreignKey: "cuidadorId",
-    onDelete: "CASCADE",
-  });
+  Cuidador.hasMany(Contratante, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
   Contratante.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
 
   // Contratante
@@ -34,13 +28,11 @@ function associarModelos() {
   });
   Agendamento.belongsTo(Contratante, { foreignKey: "contratanteId" });
 
-  //Adicionado relacionamento entre avalições e cuidadores
-  Cuidador.hasMany(Avaliacao, {
-    foreignKey: "cuidadorId",
-    onDelete: "CASCADE",
-  });
+  //Avaliação
+  Cuidador.hasMany(Avaliacao, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
   Avaliacao.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
 
+  // Idoso
   Contratante.hasMany(Idosos, { foreignKey: "contratanteId" });
   Idosos.belongsTo(Contratante, { foreignKey: "contratanteId" });
 

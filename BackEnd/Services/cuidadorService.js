@@ -1,6 +1,7 @@
 const { where } = require("sequelize");
 const cuidador = require("../Models/cuidadorModel.js");
 const Usuario = require("../Models/userModel.js");
+const Avaliacao = require("../Models/avaliacaoModel.js");
 const { User } = require("mercadopago");
 
 function registrarCuidador(cuidar) {
@@ -9,10 +10,16 @@ function registrarCuidador(cuidar) {
 
 function listarCuidador() {
     return cuidador.findAll({
-        include: {
-            model: Usuario,
-            attributes: { exclude: ["senha"] }
-        }
+        include: [
+            {
+                model: Usuario,
+                attributes: { exclude: ["senha"] }
+            },
+            {
+                model: Avaliacao,
+                attributes: ['estrelas', 'comentario'],
+            }
+        ]
     });
 }
 
@@ -23,6 +30,10 @@ async function encontrarCuidador(id) {
             {
                 model: Usuario,
                 attributes: ['nome', 'email' ,'telefone'],
+            },
+            {
+                model: Avaliacao,
+                attributes: ['estrelas', 'comentario'],
             }
         ]
     });

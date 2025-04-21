@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fe5f3430-0c9c-4bf8-8470-011a486114cd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Database/Database.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Database/Database.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Database/associacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Database/associacao.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Logs/CuidadorLogs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Logs/UserLogs.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/avaliacaoModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/avaliacaoModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/cancelamentoModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/cuidadorModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/cuidadorModel.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/privacidadeModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/suporteModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/agendamentoRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/agendamentoRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/cuidadorRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/cuidadorRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/userRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/agendamentoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/agendamentoService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/cancelamentoService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/cuidadorService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/cuidadorService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/privacidadeService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/suporteService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/BackEnd" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;,
+      &quot;assignee&quot;: &quot;SK-DavidDev&quot;,
+      &quot;author&quot;: &quot;SK-DavidDev&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SK-DavidDev&quot;,
+    &quot;author&quot;: &quot;SK-DavidDev&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TaylorSzu/zelo-back-end.git&quot;,
+    &quot;accountId&quot;: &quot;ac89e69b-43ad-459a-9561-749c8cc0bdcf&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2vvvvfEDKshOzorAuRbKP1KnX1C" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;require&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Downloads/zelo-back-end-main(1)/zelo-back-end-main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/app/extra/webstorm/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-deb605915726-JavaScript-WS-243.22562.222" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fe5f3430-0c9c-4bf8-8470-011a486114cd" name="Changes" comment="" />
+      <created>1745038594584</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745038594584</updated>
+      <workItem from="1745038596569" duration="260000" />
+      <workItem from="1745068009459" duration="361000" />
+      <workItem from="1745070034762" duration="505000" />
+      <workItem from="1745210607027" duration="46000" />
+      <workItem from="1745211348634" duration="363000" />
+      <workItem from="1745211724275" duration="1059000" />
+      <workItem from="1745253392198" duration="10829000" />
+      <workItem from="1745264529611" duration="1912000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

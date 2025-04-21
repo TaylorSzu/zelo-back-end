@@ -33,7 +33,7 @@ router.get("/idoso/listar", authMiddleware, async (req, res) => {
 
 // Rota para buscar um idoso pelo ID
 router.get("/idoso/:id", authMiddleware, async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params.id;
 
   try {
     const idoso = await Idoso.encontrarIdoso(id);
@@ -49,7 +49,7 @@ router.get("/idoso/:id", authMiddleware, async (req, res) => {
 
 // Rota para editar um idoso pelo ID
 router.put("/idoso/:id", authMiddleware, async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params.id;
   const idosoData = req.body;
 
   try {
@@ -66,7 +66,7 @@ router.put("/idoso/:id", authMiddleware, async (req, res) => {
 
 // Rota para excluir um idoso pelo ID
 router.delete("/idoso/:id", authMiddleware, async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params.id;
 
   try {
     const idosoExcluido = await Idoso.excluirIdoso(id);

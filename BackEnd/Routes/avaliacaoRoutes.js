@@ -20,17 +20,31 @@ router.post("/avaliacao/registrar", authMiddleware, async (req, res) => {
   }
 });
 
-router.get("/avaliacao/listar", authMiddleware, async (req, res) => {
+router.put("/avaliacao/editar/:id", authMiddleware, async (req, res) => {
   try {
-    const avaliacoes = await avaliacaoService.listarAvaliacao();
-    res.status(200).json(avaliacoes);
+    const { id } = req.params;
+    const dadosAtualizados = req.body;
+    const usuarioId = req.user.id;
+
+    if (Object.keys(dadosAtualizados).length === 0) {
+      return res.status(400).json({ msg: "Nenhum dado foi fornecido para atualização" });
+    }
+
+    const resultado = await avaliacaoService.editarAvaliacao(dadosAtualizados, id, usuarioId);
+
+    if (!resultado) {
+      return res.status(403).json({ msg: "Não autorizado ou avaliação inexistente" });
+    }
+
+    res.status(200).json({
+      msg: "Avaliação atualizada com sucesso",
+      novaMedia: resultado.mediaAtualizada,
+    });
   } catch (error) {
-    console.error("Erro ao listar avaliações:", error);
-    res.status(500).json({ msg: "Erro ao listar avaliações" });
+    console.error("Erro ao editar avaliação:", error);
+    res.status(500).json({ msg: "Erro ao editar avaliação" });
   }
 });
 
-// Rota para média de avaliações de um cuidador específico
-router.get("/avaliacoes/media/:cuidadorId", avaliacaoController.mediaAvaliacao);
 
 module.exports = router;
