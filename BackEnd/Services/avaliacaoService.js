@@ -1,26 +1,36 @@
+const sequelize = require("../Database/Database");
 const avaliacao = require("../Models/avaliacaoModel");
 const Cuidadores = require("../Models/cuidadorModel.js");
 const User = require("../Models/userModel.js");
 
 function registrarAvaliacao(avaliar) {
-    return avaliacao.create(avaliar);
+  return avaliacao.create(avaliar);
 }
 
 function listarAvaliacao() {
-    return avaliacao.findAll();
+  return avaliacao.findAll();
 }
 
-async function excluirAvaliacao(id) {
-    const avaliacaoEncontrada = await encontrarAvaliacao(id);
-    if (avaliacaoEncontrada) {
-        return await avaliacaoEncontrada.destroy();
-    } else {
-        return null;
-    }
+// ✅ Função para calcular a média de avaliação de um cuidador
+async function calcularMediaAvaliacao(cuidadorId) {
+  const resultado = await avaliacao.findAll({
+    attributes: [
+      "cuidadorId",
+      [sequelize.fn("AVG", sequelize.col("estrelas")), "mediaAvaliacao"],
+    ],
+    where: { cuidadorId },
+    group: ["cuidadorId"],
+  });
+
+  if (resultado.length === 0) {
+    return null;
+  }
+
+  return parseFloat(resultado[0].dataValues.mediaAvaliacao).toFixed(2);
 }
 
 module.exports = {
-    registrarAvaliacao,
-    listarAvaliacao,
-    excluirAvaliacao
+  registrarAvaliacao,
+  listarAvaliacao,
+  calcularMediaAvaliacao, // <- nova função exportada
 };
