@@ -83,4 +83,4 @@ app.listen(port, () => {
 });
 
 // Exportações
-module.exports = { app, path, express, session, bodyParser };
+module.exports = { app, path, express, session, bodyParser, port, userRoutes, cuidadorRoutes, agendamentoRoutes, contratanteRoutes, avaliacaoRoutes, idosoRoutes };
