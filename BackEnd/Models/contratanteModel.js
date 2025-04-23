@@ -22,15 +22,7 @@ const Contratantes = sequelize.define("Contratantes", {
     necessidades: {
         type: DataTypes.TEXT,
         allowNull: false,
-    },
-    termosAceitos: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-    },
-    metodoPagamento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
+    }
 }, {
     tableName: "contratantes",
     timestamps: true,

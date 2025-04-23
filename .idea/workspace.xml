@@ -5,12 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe5f3430-0c9c-4bf8-8470-011a486114cd" name="Changes" comment="Feat: avalaição">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Database/associacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Database/associacao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Logs/CuidadorLogs.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Logs/UserLogs.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/cancelamentoModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/privacidadeModel.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/suporteModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/cancelamentoService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/contratanteService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/contratanteService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/privacidadeService.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/suporteService.js" beforeDir="false" />
     </list>
@@ -88,6 +94,8 @@
       <workItem from="1745211724275" duration="1059000" />
       <workItem from="1745253392198" duration="10829000" />
       <workItem from="1745264529611" duration="2134000" />
+      <workItem from="1745328841766" duration="2135000" />
+      <workItem from="1745407785097" duration="1383000" />
     </task>
     <task id="LOCAL-00001" summary="Feat: avalaição">
       <option name="closed" value="true" />

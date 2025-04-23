@@ -1,15 +1,31 @@
-const contratante = require("../Models/contratanteModel");
+const contratante = require("../Models/contratanteModel.js");
+const user = require("../Models/userModel.js")
 
 function registrarContratante(contratar) {
     return contratante.create(contratar);
 }
 
 function listarContratante() {
-    return contratante.findAll();
+    return contratante.findAll({
+        include: [
+            {
+                model: user,
+                attributes:{ exclude: ["usuarioId"] },
+            }
+        ]
+    });
 }
 
 async function encontrarContratante(id) {
-    return contratante.findByPk(id);
+    return contratante.findOne({
+        where: {id},
+        include: [
+            {
+                model: user,
+                attributes:{ exclude: ["usuarioId"] },
+            }
+        ]
+    });
 }
 
 async function editarContratante(id, contratar) {

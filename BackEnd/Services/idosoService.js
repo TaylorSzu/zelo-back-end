@@ -1,15 +1,40 @@
-const Idosos = require("../Models/idosoModel");
+const Idosos = require("../Models/idosoModel.js");
+const Usuario = require("../Models/userModel.js");
+const Contratante = require("../Models/contratanteModel.js");
 
 function registrarIdoso(idoso) {
   return Idosos.create(idoso);
 }
 
 function listarIdoso() {
-  return Idosos.findAll();
+  return Idosos.findAll({
+    include: [
+      {
+        model: Usuario,
+        attributes: {exclude: ["cpf", "email", "senha"]}
+      },
+      {
+        model: Contratante,
+        attributes: {exclude: ["usuarioId"]}
+      } 
+    ]
+  });
 }
 
 async function encontrarIdoso(id) {
-  return Idosos.findByPk(id);
+  return Idosos.findOne({
+    where: {id},
+    include: [
+      {
+        model: Usuario,
+        attributes: {exclude: ["cpf", "email", "senha"]}
+      },
+      {
+        model: Contratante,
+        attributes: {exclude: ["usuarioId"]}
+      }
+    ]
+  });
 }
 
 async function editarIdoso(id, idoso) {

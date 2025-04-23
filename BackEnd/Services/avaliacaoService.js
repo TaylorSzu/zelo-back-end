@@ -51,6 +51,5 @@ async function calcularMediaAvaliacao(cuidadorId) {
 module.exports = {
   registrarAvaliacao,
   editarAvaliacao,
-  listarAvaliacao,
   calcularMediaAvaliacao
 };
