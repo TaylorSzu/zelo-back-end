@@ -29,5 +29,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm publish
+      - run: npm i
+      - run: node BackEnd/index.js
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
