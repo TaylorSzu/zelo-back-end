@@ -17,6 +17,8 @@ jobs:
           node-version: 20
       - run: npm ci
       - run: npm test
+      - run: npm install
+      - run: node index.js
 
   publish-npm:
     needs: build
@@ -24,8 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
-      - run: npm install
-      - run: node index.js
+      
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
