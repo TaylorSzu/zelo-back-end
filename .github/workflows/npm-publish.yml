@@ -24,12 +24,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
+      - run: npm i
+      - run: node BackEnd/index.js
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm publish
-      - run: npm i
-      - run: node BackEnd/index.js
+      
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
