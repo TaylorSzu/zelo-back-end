@@ -8,7 +8,7 @@ on:
     types: [created]
 
 jobs:
-  build:
+  build-node:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm install
-      - run: node index.js
+      - run: node BackEnd/index.js
 
   publish-npm:
     needs: build
