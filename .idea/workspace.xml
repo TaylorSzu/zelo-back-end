@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe5f3430-0c9c-4bf8-8470-011a486114cd" name="Changes" comment="Feat: avalaição">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Database/associacao.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Database/associacao.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Logs/CuidadorLogs.js" beforeDir="false" />
@@ -14,11 +13,15 @@
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Models/contratanteModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/privacidadeModel.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Models/suporteModel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/agendamentoRoutes.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/agendamentoRoutes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Routes/userRouter.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Routes/userRouter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/agendamentoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/agendamentoService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/avaliacaoService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/cancelamentoService.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/contratanteService.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/contratanteService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/privacidadeService.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/BackEnd/Services/suporteService.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BackEnd/Services/userServices.js" beforeDir="false" afterPath="$PROJECT_DIR$/BackEnd/Services/userServices.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +63,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;require&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Downloads/zelo-back-end-main(1)/zelo-back-end-main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/taylor/Downloads/zelo-front-web&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -96,6 +99,12 @@
       <workItem from="1745264529611" duration="2134000" />
       <workItem from="1745328841766" duration="2135000" />
       <workItem from="1745407785097" duration="1383000" />
+      <workItem from="1745415750317" duration="192000" />
+      <workItem from="1745768993064" duration="1385000" />
+      <workItem from="1746312704336" duration="614000" />
+      <workItem from="1746316209207" duration="826000" />
+      <workItem from="1746384566513" duration="40000" />
+      <workItem from="1746667959203" duration="3485000" />
     </task>
     <task id="LOCAL-00001" summary="Feat: avalaição">
       <option name="closed" value="true" />

@@ -16,9 +16,9 @@ async function encontrarUsuario(id) {
 
     let includeRelations = [];
 
-    if (user.tipoUsuario === "Cuidador") {
+    if (user.tipoUsuario === "Cuidador" || user.tipoUsuario === "cuidador") {
         includeRelations.push({ model: Cuidador });
-    } else if (user.tipoUsuario === "Paciente") {
+    } else if (user.tipoUsuario === "Paciente" || user.tipoUsuario === "paciente") {
         includeRelations.push({ model: Contratante });
     }
 
@@ -34,14 +34,23 @@ async function editarUsuario(id, user) {
     }
 }
 
-async function excluirUsuario(id) {
-    const usuarioEncontrado = await usuario.findByPk(id);
+async function excluirUsuario(id, senha) {
+    // Encontra o usuário pelo id e pela senha
+    const usuarioEncontrado = await usuario.findOne({
+        where: { id: id, senha: senha }
+    });
+
+    // Verifica se o usuário foi encontrado
     if (usuarioEncontrado) {
-        return await usuarioEncontrado.destroy();
+        // Se encontrado, exclui o usuário
+        await usuarioEncontrado.destroy();
+        return { message: "Usuário excluído com sucesso" };
     } else {
-        return null;
+        return { error: "Usuário não encontrado ou senha incorreta" };
     }
 }
+
+
 
 async function login(email, senha) {
     const user = await usuario.findOne({ where: { email: email, senha: senha } });

@@ -98,10 +98,15 @@ router.put("/usuario/alterar/:id", authMiddleware, async (req, res) => {
     }
 });
 
-router.delete("/usuario/excluir", authMiddleware, async (req, res) => {
+router.delete("/usuario/excluir/:senha", authMiddleware, async (req, res) => {
     try {
         const id = req.user.id;
-        const user = await usuario.excluirUsuario(id);
+        const { senha } = req.params;
+        console.log("Id",id ,"Senha",senha);
+        if (senha == null) {
+            return res.status(400).json({ "msg": "Nenhum dado foi fornecido" });
+        }  
+        const user = await usuario.excluirUsuario(id, senha);
         if (!user) {
             return res.status(404).json({ "msg": "Usuário não encontrado" });
         }
