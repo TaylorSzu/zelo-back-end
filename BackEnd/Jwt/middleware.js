@@ -4,7 +4,7 @@ const JWT_SECRET = "SuaChaveSecretaAqui";
 
 const authMiddleware = (req, res, next) => {
   // Buscar o token no cookie
-  const token = req.cookies.token;
+  const token = req.cookies?.token;
 
   if (!token) {
     return res.status(401).json({ error: "Acesso negado. Token não fornecido." });
