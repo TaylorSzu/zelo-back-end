@@ -17,7 +17,8 @@ router.post("/contratante/registrar", authMiddleware, async (req, res) => {
         console.error("Erro ao cadastrar o contratante:", error);
         res.status(500).json({ "msg": "Erro ao cadastrar o contratante" });
     }
-});
+}); 
+
 
 router.get("/contratante/listar", authMiddleware, async (req, res) => {
     try {
