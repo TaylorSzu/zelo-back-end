@@ -15,9 +15,6 @@ function associarModelos() {
   Cuidador.hasMany(Agendamento, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
   Agendamento.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
 
-  Cuidador.hasMany(Contratante, {foreignKey: "cuidadorId", onDelete: "CASCADE"});
-  Contratante.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
-
   // Contratante
   User.hasMany(Contratante, { foreignKey: "usuarioId", onDelete: "CASCADE" });
   Contratante.belongsTo(User, { foreignKey: "usuarioId" });

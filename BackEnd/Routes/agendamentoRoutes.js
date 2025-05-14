@@ -32,7 +32,8 @@ router.get("/agendamento/listar/cuidador", authMiddleware, async (req, res) => {
 
 router.get("/agendamento/listar/contratante", authMiddleware, async (req, res) => {
     try {
-        const agendamentoContratante = await agendamento.listarAgendamentosContratante();
+        const id = req.user.id;
+        const agendamentoContratante = await agendamento.listarAgendamentosContratante(id);
         res.status(200).json(agendamentoContratante);
     } catch (error) {
         console.error("Error: erro ao listar", error);

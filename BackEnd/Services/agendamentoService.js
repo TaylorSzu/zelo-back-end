@@ -74,12 +74,13 @@ async function listarAgendamentosCuidador() {
     return agendamentos;
 }
 
-async function listarAgendamentosContratante() {
+async function listarAgendamentosContratante(userId) {
     const agendamentos = await Agendamento.findAll({
         include: [
-            {model: Contratantes, attributes:["id", "necessidades"],
+            {
+                model: Contratantes, attributes:["id", "necessidades"],
                 include: [
-                    {model: User, attributes:["id", "nome", "endereco"]},
+                    {model: User, attributes:["id", "nome", "endereco"], where: {id: userId}},
                 ]
             }
         ]
