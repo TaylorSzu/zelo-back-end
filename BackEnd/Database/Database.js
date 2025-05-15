@@ -2,9 +2,9 @@
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize('db_zelloapp_senai', 'zelloapp', 'zapp629llo', {
-    host: 'locahost',
+    host:"localhost",
     port: 3306,
-    dialect: 'mysql',
+    dialect: "mysql",
     logging: false
 });
 
