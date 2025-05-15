@@ -1,18 +1,10 @@
 // Conexão ao Banco de Dados MySQL com Sequelize
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('zelo_db', 'zelo_admin', 'fas7HFiue3fa', {
-    host: '81.167.247.149',
-    port: 23306,
+const sequelize = new Sequelize('db_zelloapp_senai', 'zelloapp', 'zapp629llo', {
+    host: 'locahost',
+    port: 3306,
     dialect: 'mysql',
-    dialectOptions: {
-        charset: 'utf8mb4',
-        ssl: false
-    },
-    define: {
-        charset: 'utf8mb4',
-        collate: 'utf8mb4_general_ci',
-    },
     logging: false
 });
 
