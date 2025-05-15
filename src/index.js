@@ -20,7 +20,7 @@ const port = 5171;
 
 app.use(
   cors({
-    origin: "https://zelloapp.com.br", // O endereço do seu frontend (ajuste conforme necessário)
+    origin: "https://127.0.0.1", // O endereço do seu frontend (ajuste conforme necessário)
     credentials: true, // Permite o envio de cookies, como o token JWT
   })
 );
