@@ -45,7 +45,7 @@ app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp/",
-  })localhost
+  })
 );
 
 // Configuração de arquivos estáticos e template engine
