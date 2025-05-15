@@ -20,7 +20,7 @@ const port = 5171;
 
 app.use(
   cors({
-    origin: "http://zelloapp.com.br", // O endereço do seu frontend (ajuste conforme necessário)
+    origin: "https://zelloapp.com.br", // O endereço do seu frontend (ajuste conforme necessário)
     credentials: true, // Permite o envio de cookies, como o token JWT
   })
 );
@@ -45,7 +45,7 @@ app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp/",
-  })
+  })localhost
 );
 
 // Configuração de arquivos estáticos e template engine
