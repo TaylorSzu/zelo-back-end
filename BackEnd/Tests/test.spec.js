@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../index.js');
+const app = require('/Users/Aluno SENAI.C308-LAB4-003/Documents/GitHub/zelo-back-end/src/index.js');
 const userService = require('../Services/userServices.js');
 
 describe('|----------Testes de Rotas--------|', () => {
