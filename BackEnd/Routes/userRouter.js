@@ -107,9 +107,9 @@ router.get("/usuario/encontrar", authMiddleware, async (req, res) => {
   }
 });
 
-router.put("/usuario/alterar/:id", authMiddleware, async (req, res) => {
+router.put("/usuario/alterar", authMiddleware, async (req, res) => {
   try {
-    const id = req.params.id;
+    const id = req.user.id;
     const user = req.body;
     if (Object.keys(user).length == 0) {
       return res.status(400).json({ msg: "Nenhum dado foi fornecido" });
