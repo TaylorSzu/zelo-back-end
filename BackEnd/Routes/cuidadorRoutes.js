@@ -54,4 +54,24 @@ router.get("/cuidador/encontrar/:id", authMiddleware, async (req, res) => {
     }
 });
 
+router.put("/cuidador/alterar/:id", authMiddleware, async (req, res) => {
+    try {
+        const usuarioId = req.user.id;
+        const id = req.params.id;
+        const {disponibilidade, valorHora, especialidade, statusVerificacao} = req.body;
+        const user = {
+            id,
+            usuarioId,
+            disponibilidade,
+            valorHora,
+            especialidade,
+            statusVerificacao
+        };
+        await cuidador.editarCuidador(id, user);
+        return res.status(200).json({"msg": "Cuidador atualizado com sucesso"});
+    }catch(error){
+        console.error("Error: erro ao atualizar o cuidador", error);
+    }
+});
+
 module.exports = router;
