@@ -6,9 +6,17 @@ const database = require("../Database/Database.js");
 
 const router = express.Router();
 
-router.post("/cuidador/registrar", async (req, res) => {
+router.post("/cuidador/registrar", authMiddleware, async (req, res) => {
     try {
-        const user = req.body;
+        const usuarioId = req.user.id;
+        const {disponibilidade, valorHora, especialidade, statusVerificacao} = req.body;
+        user = {
+            usuarioId,
+            disponibilidade,
+            valorHora,
+            especialidade,
+            statusVerificacao
+        };
         if (Object.keys(user).length == 0) {
             return res.status(400).json({ "msg": "Nenhum dado foi fornecido" });
         }
