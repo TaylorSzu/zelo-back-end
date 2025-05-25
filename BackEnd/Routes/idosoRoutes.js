@@ -32,7 +32,7 @@ router.get("/idoso/listar", authMiddleware, async (req, res) => {
 });
 
 // Rota para buscar um idoso pelo ID
-router.get("/idoso/:id", authMiddleware, async (req, res) => {
+router.get("/idoso/encontrar/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -48,7 +48,7 @@ router.get("/idoso/:id", authMiddleware, async (req, res) => {
 });
 
 // Rota para editar um idoso pelo ID
-router.put("/idoso/:id", authMiddleware, async (req, res) => {
+router.put("/idoso/alterar/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
   const idosoData = req.body;
 
@@ -57,7 +57,7 @@ router.put("/idoso/:id", authMiddleware, async (req, res) => {
     if (!idosoAtualizado) {
       return res.status(404).json({ msg: "Idoso não encontrado" });
     }
-    res.status(200).json(idosoAtualizado);
+    res.status(200).json({ msg: "Idoso atualizado com sucesso" });
   } catch (error) {
     console.error("Erro ao editar o idoso:", error);
     res.status(500).json({ msg: "Erro ao editar o idoso" });
