@@ -10,13 +10,15 @@ function listarIdoso() {
   return Idosos.findAll({
     include: [
       {
-        model: Usuario,
-        attributes: {exclude: ["cpf", "email", "senha"]}
-      },
-      {
         model: Contratante,
-        attributes: {exclude: ["usuarioId"]}
-      } 
+        attributes: { exclude: ["usuarioId"] },
+        include: [
+          {
+            model: Usuario,
+            attributes: { exclude: ["cpf", "email", "senha", "senha"] }
+          }
+        ]
+      }
     ]
   });
 }
@@ -47,7 +49,7 @@ async function editarIdoso(id, idoso) {
 }
 
 async function excluirIdoso(id) {
-  const idosoEncontrado = await encontrarIdoso(id);
+  const idosoEncontrado = await Idosos.findByPk(id);
   if (idosoEncontrado) {
     return idosoEncontrado.destroy();
   } else {

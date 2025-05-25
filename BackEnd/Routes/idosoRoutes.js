@@ -65,7 +65,7 @@ router.put("/idoso/:id", authMiddleware, async (req, res) => {
 });
 
 // Rota para excluir um idoso pelo ID
-router.delete("/idoso/:id", authMiddleware, async (req, res) => {
+router.delete("/idoso/excluir/:id", authMiddleware, async (req, res) => {
   const { id } = req.params;
 
   try {

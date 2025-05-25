@@ -19,6 +19,10 @@ const Idosos = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    idade: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     dataNascimento: {
       type: DataTypes.DATEONLY,
       allowNull: true,

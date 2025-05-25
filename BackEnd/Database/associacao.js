@@ -27,7 +27,7 @@ function associarModelos() {
   Avaliacao.belongsTo(Cuidador, { foreignKey: "cuidadorId" });
 
   // Idoso
-  Contratante.hasOne(Idosos, { foreignKey: "contratanteId" });
+  Contratante.hasMany(Idosos, { foreignKey: "contratanteId", onDelete: "CASCADE" });
   Idosos.belongsTo(Contratante, { foreignKey: "contratanteId" });
 
   // Pagamento
