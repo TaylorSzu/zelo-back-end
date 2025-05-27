@@ -20,10 +20,11 @@ router.post("/idoso/registrar", authMiddleware, async (req, res) => {
   }
 });
 
-// Rota para listar todos os idosos
-router.get("/idoso/listar", authMiddleware, async (req, res) => {
+// Rota para listar todos os idosos de um contratante
+router.get("/idoso/listar/:contratanteId", authMiddleware, async (req, res) => {
   try {
-    const idosos = await Idoso.listarIdoso();
+    const { contratanteId } = req.params;
+    const idosos = await Idoso.listarIdoso(contratanteId);
     res.status(200).json(idosos);
   } catch (error) {
     console.error("Erro ao listar os idosos:", error);

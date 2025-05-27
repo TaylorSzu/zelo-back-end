@@ -6,8 +6,9 @@ function registrarIdoso(idoso) {
   return Idosos.create(idoso);
 }
 
-function listarIdoso() {
+function listarIdoso(contratanteId) {
   return Idosos.findAll({
+    where: { contratanteId },
     include: [
       {
         model: Contratante,
