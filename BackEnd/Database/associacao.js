@@ -30,14 +30,18 @@ function associarModelos() {
   Contratante.hasMany(Idosos, { foreignKey: "contratanteId", onDelete: "CASCADE" });
   Idosos.belongsTo(Contratante, { foreignKey: "contratanteId" });
 
-  // Pagamento
-  User.hasMany(Pagamento, { foreignKey: "contratanteId", onDelete: "CASCADE" });
-  User.hasMany(Pagamento, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
-  User.hasMany(Pagamento, { foreignKey: "agendamentoId", onDelete: "CASCADE" });
+  Idosos.hasMany(Agendamento, { foreignKey: "idosoId", onDelete: "CASCADE" });
+  Agendamento.belongsTo(Idosos, { foreignKey: "idosoId" });
 
-  Pagamento.belongsTo(User, { foreignKey: "contratanteId" });
-  Pagamento.belongsTo(User, { foreignKey: "cuidadorId" });
-  Pagamento.belongsTo(User, { foreignKey: "agendamentoId" });
+
+  // // Pagamento
+  // User.hasMany(Pagamento, { foreignKey: "contratanteId", onDelete: "CASCADE" });
+  // User.hasMany(Pagamento, { foreignKey: "cuidadorId", onDelete: "CASCADE" });
+  // User.hasMany(Pagamento, { foreignKey: "agendamentoId", onDelete: "CASCADE" });
+
+  // Pagamento.belongsTo(User, { foreignKey: "contratanteId" });
+  // Pagamento.belongsTo(User, { foreignKey: "cuidadorId" });
+  // Pagamento.belongsTo(User, { foreignKey: "agendamentoId" });
 }
 
 // Sincronização com o banco

@@ -1,6 +1,5 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../Database/Database");
-const Contratantes = require("../Models/contratanteModel");
 
 const Agendamento = sequelize.define("Agendamento", {
     id: {
@@ -10,23 +9,15 @@ const Agendamento = sequelize.define("Agendamento", {
     },
     contratanteId: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: Contratantes,
-            key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
+        allowNull: true,
+    },
+    idosoId: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
     },
     cuidadorId: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references: {
-            model: "cuidadores",
-            key: "id",
-        },
-        onUpdate: "CASCADE",
-        onDelete: "CASCADE",
     },
     dataHoraInicio: {
         type: DataTypes.DATE,
@@ -53,6 +44,5 @@ const Agendamento = sequelize.define("Agendamento", {
     tableName: "agendamentos",
     timestamps: true,
 });
-
 
 module.exports = Agendamento;

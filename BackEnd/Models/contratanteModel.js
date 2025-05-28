@@ -1,6 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../Database/Database");
-const Usuario = require("../Models/userModel"); // Certifique-se de que o modelo está correto
+const Usuario = require("../Models/userModel"); 
 
 const Contratantes = sequelize.define("Contratantes", {
     id: {
@@ -19,7 +19,15 @@ const Contratantes = sequelize.define("Contratantes", {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
     },
-    necessidades: {
+    idade: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    dataNascimento: {
+        type: DataTypes.DATEONLY,
+        allowNull: false,
+    },
+    observacoesMedicas: {
         type: DataTypes.TEXT,
         allowNull: false,
     }

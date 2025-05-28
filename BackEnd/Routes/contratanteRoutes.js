@@ -7,8 +7,8 @@ const router = express.Router();
 router.post("/contratante/registrar", authMiddleware, async (req, res) => {
     try {
         const usuarioId = req.user.id
-        const {necessidades} = req.body;
-        const contratante = {usuarioId, necessidades};
+        const {idade, dataNascimento, observacoesMedicas} = req.body;
+        const contratante = {usuarioId, idade, dataNascimento, observacoesMedicas};
         if (Object.keys(contratante).length == 0) {
             return res.status(400).json({ "msg": "Nenhum dado foi fornecido" });
         }
@@ -35,11 +35,11 @@ router.put("/contratante/alterar/:id", authMiddleware, async (req, res) => {
     try {
         const id = req.params.id;
         const usuarioId = req.user.id;
-        const { necessidades } = req.body;
-        if (!necessidades) {
+        const {idade, dataNascimento, observacoesMedicas} = req.body;
+        if (!idade || !dataNascimento || !observacoesMedicas) {
             return res.status(400).json({ msg: "Nenhum dado foi fornecido para atualizar" });
         }
-        const user = { usuarioId, necessidades };
+        const user = { usuarioId, idade, dataNascimento, observacoesMedicas };
         console.log("Recebendo dados para alterar:", user);
         await Contratante.editarContratante(id, user);
         res.status(200).json({ msg: "Contratante alterado com sucesso" });
