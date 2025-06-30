@@ -28,7 +28,6 @@ router.get(
       const contratanteId = req.params.contratanteId;
       const agendamentoContratante =
         await agendamento.buscarAgendamentosContratante(contratanteId);
-      // const agendamentosIdoso = await agendamento.buscarAgendamentosIdoso(contratanteId);
       res.status(200).json(agendamentoContratante);
     } catch (error) {
       console.error("Error: erro ao listar", error);

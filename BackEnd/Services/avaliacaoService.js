@@ -3,8 +3,25 @@ const Avaliacao = require("../Models/avaliacaoModel");
 const Cuidadores = require("../Models/cuidadorModel.js");
 const User = require("../Models/userModel.js");
 
-function registrarAvaliacao(avaliar) {
-  return Avaliacao.create(avaliar);
+const Agendamento = require("../Models/agendamentoModel");
+async function registrarAvaliacao(avaliar) {
+  const { agendamentoId } = avaliar;
+
+  if (!agendamentoId) {
+    throw new Error("O campo agendamentoId é obrigatório.");
+  }
+
+  const novaAvaliacao = await Avaliacao.create(avaliar);
+
+  const agendamento = await Agendamento.findByPk(agendamentoId);
+  if (!agendamento) {
+    throw new Error("Agendamento não encontrado.");
+  }
+
+  agendamento.avaliado = true;
+  await agendamento.save();
+
+  return novaAvaliacao;
 }
 
 async function editarAvaliacao(avaliacao, id, usuarioId) {
@@ -37,7 +54,6 @@ async function listarAvaliacoesPorCuidador(cuidadorId) {
   });
 }
 
-
 // ✅ Função para calcular a média de avaliação de um cuidador
 async function calcularMediaAvaliacao(cuidadorId) {
   const resultado = await Avaliacao.findAll({
@@ -60,5 +76,5 @@ module.exports = {
   registrarAvaliacao,
   editarAvaliacao,
   calcularMediaAvaliacao,
-  listarAvaliacoesPorCuidador
+  listarAvaliacoesPorCuidador,
 };

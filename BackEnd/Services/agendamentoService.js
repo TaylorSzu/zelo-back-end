@@ -1,14 +1,14 @@
-const { Op, where } = require("sequelize");
+const { Op } = require("sequelize");
 const Agendamento = require("../Models/agendamentoModel.js");
 const Contratantes = require("../Models/contratanteModel.js");
-const Cuidadores = require("../Models/cuidadorModel.js");
+const Cuidadore = require("../Models/cuidadorModel.js"); // nome singular conforme uso no include e retorno
 const Idosos = require("../Models/idosoModel.js");
 const { encontrarIdoso } = require("./idosoService.js");
 const User = require("../Models/userModel.js");
 const cron = require("node-cron");
 
 async function registrarAgendamento(agendamento) {
-  const cuidadorExiste = await Cuidadores.findByPk(agendamento.cuidadorId);
+  const cuidadorExiste = await Cuidadore.findByPk(agendamento.cuidadorId);
   if (!cuidadorExiste) {
     throw new Error("Cuidador não encontrado.");
   }
@@ -89,13 +89,14 @@ async function aceitarAgendamento(idAgendamento, idCuidador) {
 }
 
 async function concluirAgendamento(id, cuidadorId) {
-  const agendamento = await Agendamento.findAll({
+  const agendamento = await Agendamento.findOne({
     where: {
       id,
       cuidadorId,
     },
     attributes: ["id", "cuidadorId", "contratanteId"],
   });
+
   if (!agendamento) {
     console.log("❌ Agendamento não encontrado ou não pertence ao cuidador");
     throw new Error("Agendamento não encontrado ou não pertence a você.");
@@ -117,14 +118,12 @@ async function cancelarAgendamento(id, contratanteId, cuidadorId) {
     throw new Error("Agendamento não encontrado.");
   }
 
-  // Verifica se pelo menos um dos IDs foi informado
   if (!contratanteId && !cuidadorId) {
     throw new Error(
       "É necessário informar contratanteId ou cuidadorId para cancelar."
     );
   }
 
-  // Verifica permissão: o usuário deve ser ou contratante ou cuidador relacionado
   const autorizado =
     (contratanteId && agendamento.contratanteId === contratanteId) ||
     (cuidadorId && agendamento.cuidadorId === cuidadorId);
@@ -143,10 +142,10 @@ async function cancelarAgendamento(id, contratanteId, cuidadorId) {
 async function buscarAgendamentosContratante(contratanteId) {
   const busca = await Agendamento.findAll({
     where: { contratanteId },
-    attributes: ["id", "dataHoraInicio", "dataHoraFim", "status"],
+    attributes: ["id", "dataHoraInicio", "dataHoraFim", "status", "avaliado"],
     include: [
       {
-        model: Cuidadores,
+        model: Cuidadore,
         attributes: ["id", "valorHora", "especialidade"],
         include: [
           {
@@ -169,7 +168,8 @@ async function buscarAgendamentosContratante(contratanteId) {
     dataHoraInicio: ag.dataHoraInicio,
     dataHoraFim: ag.dataHoraFim,
     status: ag.status,
-    cuidadorId: ag.Cuidadore.id
+    avaliado: ag.avaliado,
+    cuidadorId: ag.Cuidadore.id,
   }));
 }
 
@@ -186,7 +186,7 @@ async function buscarAgendamentosIdoso(contratanteId) {
     attributes: ["id", "dataHoraInicio", "dataHoraFim", "status"],
     include: [
       {
-        model: Cuidadores,
+        model: Cuidadore,
         attributes: ["valorHora", "especialidade"],
         include: [
           {
@@ -230,7 +230,7 @@ async function buscarAgendamentosCuidador(cuidadorId) {
         ],
       },
       {
-        model: Cuidadores,
+        model: Cuidadore,
         attributes: ["valorHora"],
       },
     ],
@@ -289,7 +289,7 @@ async function agendamentosPendentesCuidador(cuidadorId) {
         ],
       },
       {
-        model: Cuidadores,
+        model: Cuidadore,
         attributes: ["valorHora"],
       },
     ],
@@ -330,7 +330,7 @@ async function encontrarAgendamentoCuidadores(id) {
     where: { id },
     include: [
       {
-        model: Cuidadores,
+        model: Cuidadore,
         attributes: [
           "id",
           "disponibilidade",
@@ -399,7 +399,7 @@ async function listarServicosConcluidosCuidador(cuidadorId) {
         attributes: ["nome"],
       },
       {
-        model: Cuidadores,
+        model: Cuidadore,
         attributes: ["valorHora"],
       },
     ],

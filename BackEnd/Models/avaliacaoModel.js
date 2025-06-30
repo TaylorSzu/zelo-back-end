@@ -17,6 +17,10 @@ const Avaliacao = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    agendamentoId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     estrelas: {
       type: DataTypes.INTEGER,
       allowNull: false,

@@ -44,6 +44,11 @@ const Agendamento = sequelize.define(
       allowNull: false,
       defaultValue: "pendente",
     },
+    avaliado: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
+    },
   },
   {
     tableName: "agendamentos",

@@ -35,6 +35,13 @@ function associarModelos() {
   });
   Avaliacao.belongsTo(Cuidadores, { foreignKey: "cuidadorId" });
 
+  // Avaliação está vinculada a um Agendamento
+  Agendamento.hasMany(Avaliacao, {
+    foreignKey: "agendamentoId",
+    onDelete: "CASCADE",
+  });
+  Avaliacao.belongsTo(Agendamento, { foreignKey: "agendamentoId" });
+
   // Idoso
   Contratantes.hasMany(Idosos, {
     foreignKey: "contratanteId",
@@ -66,6 +73,7 @@ function associarModelos() {
 }
 
 // Sincronização com o banco
+associarModelos();
 connected
   .sync()
   .then(() => {
@@ -76,16 +84,6 @@ connected
   });
 
 //Função para associar corretamente os modelos
-associarModelos();
-
-connected
-  .sync()
-  .then(() => {
-    console.log("✅ Banco de dados sincronizado com sucesso!");
-  })
-  .catch((error) => {
-    console.error("❌ Erro ao sincronizar com o banco de dados:", error);
-  });
 
 module.exports = {
   User,
